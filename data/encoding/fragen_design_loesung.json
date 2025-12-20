@@ -1,0 +1,45 @@
+{
+    "group_id": "type_design_implementation",
+    "main_question": "Welche Designlösung spricht Sie bei smarten Energietechnologien eher an? Eine...",
+    "items": {
+        "v_2922": {
+            "label": "modulare Lösung (mehrere Produkte), die in Zukunft erweitert werden kann",
+            "type": "categorial"
+        },
+        "v_2923": {
+            "label": "integrierte, zentrale Lösung, die nicht erweitert werden muss",
+            "type": "categorial"
+        },
+        "v_2924": {
+            "label": "Lösung, die gut im Haushalt erkennbar ist",
+            "type": "categorial"
+        },
+        "v_2925": {
+            "label": "Lösung die sich in den Hintergrund einfügt",
+            "type": "categorial"
+        },
+        "v_2926": {
+            "label": "Lösung die immer eingeschaltet und aktiv ist",
+            "type": "categorial"
+        },
+        "v_2927": {
+            "label": "Lösung die nur funktioniert, wenn sie aktiviert ist",
+            "type": "categorial"
+        },
+        "v_2928": {
+            "label": "Lösung, die lokal auch ohne Internetverbindung funktioniert",
+            "type": "categorial"
+        },
+        "v_2929": {
+            "label": "Lösung, die mit dem Internet verbunden ist",
+            "type": "categorial"
+        }
+    },
+    "weights": {
+        "1": "stimme voll und ganz zu (1)",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "stimme überhaupt nicht zu (5)"
+    }
+}

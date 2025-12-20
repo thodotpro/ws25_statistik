@@ -1,0 +1,85 @@
+{
+    "group_id": "impact_comfort",
+    "main_question": "In welchem Maße denken Sie, dass die smarten Technologien einen Komfortgewinn im Haushalt mit sich bringen?",
+    "items": {
+        "v_2702": {
+            "label": "Stromspeicher",
+            "type": "categorial"
+        },
+        "v_2703": {
+            "label": "smarte Jalousien/Rollo",
+            "type": "categorial"
+        },
+        "v_2704": {
+            "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+            "type": "categorial"
+        },
+        "v_2705": {
+            "label": "smarte Gesundheits- und Assistenzgeräte",
+            "type": "categorial"
+        },
+        "v_2706": {
+            "label": "E-Auto",
+            "type": "categorial"
+        },
+        "v_2707": {
+            "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+            "type": "categorial"
+        },
+        "v_2708": {
+            "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+            "type": "categorial"
+        },
+        "v_2709": {
+            "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+            "type": "categorial"
+        },
+        "v_2710": {
+            "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+            "type": "categorial"
+        },
+        "v_2711": {
+            "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+            "type": "categorial"
+        },
+        "v_2712": {
+            "label": "smarte Steckdose (Smart Plug)",
+            "type": "categorial"
+        },
+        "v_2713": {
+            "label": "Smart Hub",
+            "type": "categorial"
+        },
+        "v_2714": {
+            "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+            "type": "categorial"
+        },
+        "v_2715": {
+            "label": "Photovoltaikanlage",
+            "type": "categorial"
+        },
+        "v_2716": {
+            "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+            "type": "categorial"
+        },
+        "v_2717": {
+            "label": "Energiemanagementsystem",
+            "type": "categorial"
+        },
+        "v_2718": {
+            "label": "smarte(r) Waschmaschine und/oder Trockner",
+            "type": "categorial"
+        },
+        "v_2719": {
+            "label": "Sonstige und zwar",
+            "type": "free_text"
+        }
+    },
+    "weights": {
+        "1": "stimme voll und ganz zu",
+        "2": "stimme zu",
+        "3": "neutral",
+        "4": "stimme nicht zu",
+        "5": "stimme überhaupt nicht zu"
+    }
+}

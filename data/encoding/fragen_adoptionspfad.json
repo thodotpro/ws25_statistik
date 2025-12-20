@@ -1,0 +1,93 @@
+{
+    "group_id": "timeline_smart_technolgies",
+    "main_question": "In welcher zeitlichen Reihenfolge fanden die smarten Technologien Einzug in Ihren Haushalt?",
+    "items": {
+        "v_2894": {
+            "label": "Stromspeicher",
+            "type": "categorial"
+        },
+        "v_2895": {
+            "label": "smarte Jalousien/Rollo",
+            "type": "categorial"
+        },
+        "v_2896": {
+            "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+            "type": "categorial"
+        },
+        "v_2897": {
+            "label": "smarte Gesundheits- und Assistenzgeräte",
+            "type": "categorial"
+        },
+        "v_2898": {
+            "label": "E-Auto",
+            "type": "categorial"
+        },
+        "v_2899": {
+            "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+            "type": "categorial"
+        },
+        "v_2900": {
+            "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+            "type": "categorial"
+        },
+        "v_2901": {
+            "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+            "type": "categorial"
+        },
+        "v_2902": {
+            "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+            "type": "categorial"
+        },
+        "v_2903": {
+            "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+            "type": "categorial"
+        },
+        "v_2904": {
+            "label": "smarte Steckdose (Smart Plug)",
+            "type": "categorial"
+        },
+        "v_2905": {
+            "label": "Smart Hub",
+            "type": "categorial"
+        },
+        "v_2906": {
+            "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+            "type": "categorial"
+        },
+        "v_2907": {
+            "label": "Photovoltaikanlage",
+            "type": "categorial"
+        },
+        "v_2908": {
+            "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+            "type": "categorial"
+        },
+        "v_2909": {
+            "label": "Energiemanagementsystem",
+            "type": "categorial"
+        },
+        "v_2910": {
+            "label": "smarte(r) Waschmaschine und/oder Trockner",
+            "type": "categorial"
+        },
+        "v_2911": {
+            "label": "Sonstige und zwar",
+            "type": "free_text"
+        }
+
+},
+    "weigths": {
+        "1": "war bereits im Haushalt vorhanden",
+        "2": "als 1. im Haushalt",
+        "3": "als 2. im Haushalt",
+        "4": "als 3. im Haushalt",
+        "5": "als 4. im Haushalt",
+        "6": "als 5. im Haushalt",
+        "7": "als 6. im Haushalt",
+        "8": "als 7. im Haushalt",
+        "9": "als 8. im Haushalt",
+        "10": "als 9. im Haushalt",
+        "11": "als 10. im Haushalt",
+        "12": "zuletzt angeschafft"
+    }
+}

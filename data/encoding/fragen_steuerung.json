@@ -1,0 +1,49 @@
+{
+    "group_id": "management_sht",
+    "main_question": "Welche der folgenden Optionen würden Sie in Betracht ziehen zur Steuerung von smarten Energietechnologien?",
+    "items": {
+        "v_1588": {
+            "label": "Smartphone",
+            "type": "categorial"
+        },
+        "v_1589": {
+            "label": "Laptop/PC",
+            "type": "categorial"
+        },
+        "v_1590": {
+            "label": "Tablet",
+            "type": "categorial"
+        },
+        "v_1591": {
+            "label": "Smart TV",
+            "type": "categorial"
+        },
+        "v_1592": {
+            "label": "separate Steuerungsanzeige",
+            "type": "categorial"
+        },
+        "v_1593": {
+            "label": "Wearables (z.B.Smart Watch)",
+            "type": "categorial"
+        },
+        "v_1594": {
+            "label": "Sprachassistent (z. B. Siri, Alexa)",
+            "type": "categorial"
+        },
+        "v_1595": {
+            "label": "Gestensteuerug",
+            "type": "categorial"
+        },
+        "v_2934": {
+            "label": "keine der genannten",
+            "type": "categorial"
+        }
+    },
+    "weights": {
+        "1": "stimme voll und ganz zu (1)",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "stimme überhaupt nicht zu (5)"
+    }
+}

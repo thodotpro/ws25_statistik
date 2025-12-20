@@ -1,0 +1,25 @@
+{
+    "group_id": "type_information",
+    "main_question": "Welche Art von Information sollen smarte Energietechnologien bevorzugt liefern?",
+    "items": {
+        "v_1577": {
+            "label": "reine Information",
+            "type": "categorial"
+        },
+        "v_1578": {
+            "label": "Vorschläge für Verbesserungen",
+            "type": "categorial"
+        },
+        "v_1579": {
+            "label": "Erinnerungshilfen / Alerts",
+            "type": "categorial"
+        }
+    },
+    "weights": {
+        "1": "sehr wichtig (1)",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "sehr unwichtig (5)"
+    }
+}

@@ -1,0 +1,289 @@
+{
+    "group_id": "opinion",
+    "main_question": "In welchem Maße stimmen Sie den beschriebenen 3 Meinungen zu smarten Energietechnologien zu?",
+    "items": {
+        "v_1573": {
+            "label": "Smarte Energietechnologien ermöglichen eine bessere Steuerung von Haushaltstechnik und damit Energieeinsparungen! Dies betrifft vor allem das Heizen, wo man mit smarten Energietechnologien in Kombination mit einer Dämmung bzw. integriert in die Gebäudeplanung wirklich Energie einspart. Smarte Energietechnologien sind ein wichtiges Puzzleteil, zur Etablierung eines nachhaltigen, stabilen und smarten Stromnetzes, wobei sie auch ohne das Internet funktionsfähig sind.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme eher zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "6": "",
+                "7": "stimme eher nicht zu"
+            }
+        },
+        "v_1574": {
+            "label": "Kritisch zu sehen bei smarten Energietechnologien ist definitiv der Datenschutz bzw. Schutz der Privatsphäre! Es ist auch fraglich, wie nachhaltig, kostensparend und benutzerfreundlich diese Technologien sind. Komfortgewinn bringen smarte Energietechnologien eher nicht mit sich. Sie tragen zwar bei, Energie zu sparen, aber richtig erst bei einer vorab Berücksichtigung in der Gebäudeplanung. Fazit: es handelt sich um weitere Technik im Haushalt, die nicht unbedingt notwendig ist.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme eher zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "6": "",
+                "7": "stimme eher nicht zu"
+            }
+        },
+        "v_1575": {
+            "label": "Der Vorteil von smarten Energietechnologien liegt klar auf der Hand: Komfortgewinn! Smarte Energietechnologien stehen für einen modernen, 'intelligenten' Haushalt, der zu einem nachhaltigen Energiesystem beiträgt. Wenn Anbieter smarter Energietechnologien über mein Nutzungsverhalten Bescheid wissen, ist das nicht unbedingt schlimm. Auch die Gefahr von Manipulationen durch Stromanbieter sind eher gering. Kritische Stimmen muten da eher Verschwörungstheorien an.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme eher zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "6": "",
+                "7": "stimme eher nicht zu"
+            }
+        },
+        "v_2936": {
+            "label": "Welches Meinungsbild stimmt am ehesten mit Ihrer Meinung über smarte Energietechnologien überein?",
+            "type": "categorial",
+            "weigths": {
+                "1": "Smarte Energietechnologien ermöglichen eine bessere Steuerung von Haushaltstechnik und damit Energieeinsparungen! Dies betrifft vor allem das Heizen, wo man mit smarten Energietechnologien in Kombination mit einer Dämmung bzw. integriert in die Gebäudeplanung wirklich Energie einspart. Smarte Energietechnologien sind ein wichtiges Puzzleteil, zur Etablierung eines nachhaltigen, stabilen und smarten Stromnetzes, wobei sie auch ohne das Internet funktionsfähig sind.",
+                "2": "Kritisch zu sehen bei smarten Energietechnologien ist definitiv der Datenschutz bzw. Schutz der Privatsphäre! Es ist auch fraglich, wie nachhaltig, kostensparend und benutzerfreundlich diese Technologien sind. Komfortgewinn bringen smarte Energietechnologien eher nicht mit sich. Sie tragen zwar bei, Energie zu sparen, aber richtig erst bei einer vorab Berücksichtigung in der Gebäudeplanung. Fazit: es handelt sich um weitere Technik im Haushalt, die nicht unbedingt notwendig ist.",
+                "3": "Der Vorteil von smarten Energietechnologien liegt klar auf der Hand: Komfortgewinn! Smarte Energietechnologien stehen für einen modernen, 'intelligenten' Haushalt, der zu einem nachhaltigen Energiesystem beiträgt. Wenn Anbieter smarter Energietechnologien über mein Nutzungsverhalten Bescheid wissen, ist das nicht unbedingt schlimm. Auch die Gefahr von Manipulationen durch Stromanbieter sind eher gering. Kritische Stimmen muten da eher Verschwörungstheorien an."
+            }
+        },
+        "v_2919": {
+            "label": "Möchten Sie zu diesen Meinungsbildern noch etwas anmerken?",
+            "type": "free_text"
+        },
+        "v_1625": {
+            "label": "Hinsichtlich technischer Neuentwicklungen bin ich sehr neugierig.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1626": {
+            "label": "Ich finde schnell Gefallen an technischen Neuentwicklungen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1627": {
+            "label": "Ich bin stets daran interessiert, die neuesten technischen Geräte zu verwenden.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1628": {
+            "label": "Wenn ich Gelegenheit dazu hätte, würde ich noch viel häufiger technische Produkte nutzen, als ich das gegenwärtig tue.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1629": {
+            "label": "Im Umgang mit moderner Technik habe ich oft Angst, zu versagen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1630": {
+            "label": "Für mich stellt der Umgang mit technischen Neuerungen zumeist eine Überforderung dar.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1631": {
+            "label": "Ich habe Angst, technische Neuentwicklungen eher kaputt zu machen, als dass ich sie richtig benutze.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1632": {
+            "label": "Den Umgang mit neuer Technik finde ich schwierig – ich kann das meistens einfach nicht.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1633": {
+            "label": "Ob ich erfolgreich in der Anwendung moderner Technik bin, hängt im Wesentlichen von mir ab.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1634": {
+            "label": "Es liegt in meiner Hand, ob mir die Nutzung technischer Neuentwicklungen gelingt – mit Zufall oder Glück hat das wenig zu tun.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1635": {
+            "label": "Wenn ich im Umgang mit Technik Schwierigkeiten habe, hängt es schlussendlich allein von mir ab, dass ich sie löse.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1754": {
+            "label": "Bitte wählen Sie Antwortoption 'stimme voll und ganz zu' aus, um zu zeigen, dass Sie aufmerksam sin",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "": {
+            "label": "",
+            "type": "",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1658": {
+            "label": "Ich finde es anerkennenswert, wenn andere Leute in ihrem Haushalt Energie einsparen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1659": {
+            "label": "Ich finde es wichtig, dass die Energiesparmöglichkeiten durch Wärmedämmung und Isolierverglasung genutzt werden.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1660": {
+            "label": "Meiner Auffassung nach ist es günstiger, im Winter zum Lüften das Fenster ständig gekippt zu halten, als es kurze Zeit ganz zu öffnen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1661": {
+            "label": "Ich halte es für nicht zumutbar, von den Leuten zu verlangen, ihren Strom- oder Gasverbrauch regelmäßig zu kontrollieren, um Energie zu sparen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1662": {
+            "label": "Um Strom zu sparen, benutze ich verbrauchsarme Geräte und/oder Energiesparlampen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1663": {
+            "label": "Beim Kochen benutze ich einen Deckel für Topf oder Pfanne, damit nicht unnötig Energie verlorengeht.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1664": {
+            "label": "Wenn es in der Wohnung etwas kühler ist, drehe ich die Heizung auf oder verwende einen Heizlüfter, statt mich wärmer anzuziehen.",
+            "type": "categorial",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        },
+        "v_1665": {
+            "label": "Ich verzichte auf Elektrogeräte wie Büchsenöffner, Elektromesser, Entsafter etc., auch wenn das mehr Handarbeit mit sich bringt.",
+            "type": "",
+            "weights": {
+                "1": "stimme voll und ganz zu",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "stimme überhaupt nicht zu"
+            }
+        }
+    }
+}

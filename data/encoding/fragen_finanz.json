@@ -1,0 +1,25 @@
+{
+    "group_id": "type_funding",
+    "main_question": "Welche Art der Finanzierung spricht Sie für smarte Energietechnologien eher an?",
+    "items": {
+        "v_1599": {
+            "label": "Einmalzahlung für smarte Energieprodukte (einmalige Fixzahlung, keine wiederkehrende Gebühr)",
+            "type": "categorial"
+        },
+        "v_1600": {
+            "label": "Die Kosten für smarte Energieprodukte sind in einem Abo/einer wiederkehrenden Gebühr enthalten (z.B. monatliche Pauschalzahlung)",
+            "type": "categorial"
+        },
+        "v_1601": {
+            "label": "Die Kosten für das smarte Energieprodukte sind in einem Abo/einer wiederkehrenden Gebühr im Zusammenhang mit dem Betrieb des Produkts zu zahlen (z.B. Gebühr pro verbrauchter Betriebsstunde)",
+            "type": "categorial"
+            }
+    },
+    "weights": {
+        "1": "spricht micht sehr an (1)",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "spricht mich gar nicht an (5)"
+    }
+}

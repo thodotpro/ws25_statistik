@@ -1,0 +1,134 @@
+{
+    "v_1752": {
+        "label": "Geschlecht",
+        "type": "categorial",
+        "options": {
+            "1": "weiblich",
+            "2": "männlich",
+            "3": "inter",
+            "4": "divers",
+            "5": "offen",
+            "6": "keine Angabe"
+        }
+    },
+
+    "v_1753": {
+        "label": "Bunesland",
+        "type": "categorial",
+        "options": {
+            "1": "Wien",
+            "2": "Niederösterreich",
+            "3": "Oberösterreich",
+            "4": "Salzburg",
+            "5": "Tirol",
+            "6": "Vorarlberg",
+            "7": "Steiermark",
+            "8": "Kärnten",
+            "9": "Burgenland"
+        }
+    },
+
+    "v_1749": {
+        "label": "Bildung (höchste)",
+        "type": "categorial",
+        "options": {
+            "1": "Pflichtschule",
+            "2": "Lehre mit Berufsschule",
+            "3": "Fach- oder Handelsschule",
+            "4": "Matura",
+            "5": "Abschluss an einer Universität, (Fach-)Hochschule",
+            "6": "Anderer Abschluss mit Matura (z.B. Kolleg)",
+            "7": "Keine Angabe/weiß nicht",
+            "8": "Sonstiges, und zwar:"
+        }
+    },
+
+    "v_1747": {
+        "label": "Beruf",
+        "type": "categorial",
+        "options": {
+            "1": "Unselbstständig erwerbstätig (auch: Lehrling)",
+            "2": "Selbständig erwerbstätig",
+            "3": "Arbeitslos", 
+            "4": "Pensionist(in)",
+            "5": "Haushaltsführend",
+            "6": "Schüler(in), Student(in)",
+            "7": "Dauerhaft arbeitsunfähig",
+            "8": "Präsenz-/Zivildiener",
+            "9": "In Elternkarenz",
+            "10": "Sonstiges"
+        }
+    },
+
+    "v_71": {
+        "label": "Einkommen",
+        "type": "numerical",
+        "options": {
+            "1": [0, 901],
+            "2": [901, 1500],
+            "3": [1501, 2200],
+            "4": [2201, 3000],
+            "5": [3001, 4000],
+            "6": [4001, 5000],
+            "7": [5001, 6000],
+            "8": [6001, 7000],
+            "9": [7001, 8000],
+            "10": [8001, "inf"],
+            "11": "Keine Angabe/weiß ich nicht"
+        }
+    },
+
+    "v_1762": {
+        "label": "Wohnform",
+        "type": "categorial",
+        "options": {
+            "1": "Hauseigentum",
+            "2": "Wohnungseigentum",
+            "3": "Miete (Haus, Wohnung, inkl. Mietkauf)"
+        }
+    },
+
+    "v_2937": {
+        "label": "Art von Miete",
+        "type": "categorial",
+        "options": {
+            "1": "Gemeindewohnung",
+            "2": "Genossenschaftswohnung",
+            "3": "privat vermietet",
+            "6": "sonstige"
+        }
+    },
+
+    "v_1751": {
+        "label": "Alter",
+        "type": "numerical"
+    },
+
+    "dupl1_v_69": {
+        "label": "Anzahl Personen im Haushalt",
+        "type": "numerical"
+    },
+
+    "v_2920": {
+        "label": "Wenn Sie uns zu den Themen dieser Umfrage noch etwas mitteilen möchten, können Sie dies hier gerne tun.",
+        "type": "free_text"
+    },
+
+    "v_1750": {
+        "label": "Bildung_Sonstiges: offene Antwort",
+        "type": "free_text",
+        "parent": "v_1749"
+    },
+
+    "v_1748": {
+        "label": "Beruf_Sonstiges: offene Antwort",
+        "type": "free_text",
+        "parent": "v_1747"
+    },
+
+    "v_2938": {
+        "label": "Mietwohnung_Sonstige: offene Antwort",
+        "type": "free_text",
+        "parent": "v_2937"
+    }
+}

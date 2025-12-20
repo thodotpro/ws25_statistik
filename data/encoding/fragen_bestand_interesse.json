@@ -1,0 +1,129 @@
+{
+    "group_id": "available_smart_technologies",
+    "main_question": "Bitte geben Sie an, ob die folgenden smarten Technologien bereits in Ihrem Haushalt vorhanden sind und wenn nicht, inwieweit Sie Interesse an einer Anschaffung haben",
+    "items": {
+        "v_1709": {
+            "label": "Stromspeicher",
+            "short": "power",
+            "type": "categorial"
+        },
+
+        "v_1710": {
+            "label": "smarte Jalousien/Rollo",
+            "short": "blind",
+            "type": "categorial"
+        },
+
+        "v_1711": {
+            "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+            "short": "security",
+            "type": "categorial"
+        },
+
+        "v_1712": {
+            "label": "smarte Gesundheits- und Assistenzgeräte",
+            "short": "assistance",
+            "type": "categorial"
+        },
+
+        "v_1713": {
+            "label": "E-Auto",
+            "short": "car",
+            "type": "categorial"
+        },
+
+        "v_1714": {
+            "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+            "short": "lighting",
+            "type": "categorial"        
+        },
+
+        "v_1715": {
+            "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+            "short": "system",
+            "type": "categorial"
+        },
+
+        "v_1717": {
+            "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+            "short": "voice",
+            "type": "categorial"
+        },
+
+        "v_1718": {
+            "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+            "short": "entertainment",
+            "type": "categorial"
+        },
+
+        "v_1720": {
+            "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+            "short": "kitchen",
+            "type": "categorial"
+        },
+        "v_1722": {
+            "label": "smarte Steckdose (Smart Plug)",
+            "short": "socket",
+            "type": "categorial"
+        },
+
+        "v_1724": {
+            "label": "Smart Hub",
+            "short": "hub",
+            "type": "categorial"
+        },
+
+        "v_1726": {
+            "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+            "short": "heating",
+            "type": "categorial"
+    },
+
+        "v_1728": {
+            "label": "Photovoltaikanlage",
+            "short": "photovoltaic",
+        "type": "categorial"
+    },
+
+        "v_1730": {
+            "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+            "short": "robot",
+            "type": "categorial"
+        },
+
+        "v_1732": {
+            "label": "Energiemanagementsystem",
+            "short": "energy",
+            "type": "categorial"
+        },
+
+        "v_1734": {
+            "label": "smarte(r) Waschmaschine und/oder Trockner",
+            "short": "washing",
+            "type": "categorial"
+        },
+
+        "v_1707": {
+            "label": "Sonstige und zwar",
+            "short": "",
+            "type": "free_text",
+            "parent": ""
+        },
+
+        "v_1719": {
+            "label": "Sonstige und zwar",
+            "short": "",
+            "type": "free_text",
+            "parent": ""
+        }
+    },
+
+    "weights": {
+        "1": "bereits vorhanden",
+        "2": "sehr großes Interesse",
+        "3": "großes Interesse",
+        "4": "teils-teils",
+        "5": "wenig Interesse",
+        "6": "gar kein Interesse"
+    }
+}
