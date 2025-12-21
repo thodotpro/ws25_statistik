@@ -1,0 +1,1335 @@
+[
+    {
+        "group_id": "demographic",
+        "main_question": "Angabe zu persönlichen Daten",
+        "items": {
+            "v_1752": {
+                "label": "Geschlecht",
+                "type": "nominal",
+                "options": {
+                    "1": "weiblich",
+                    "2": "männlich",
+                    "3": "inter",
+                    "4": "divers",
+                    "5": "offen",
+                    "6": "keine Angabe"
+                }
+            },
+            "v_1753": {
+                "label": "Bundesland",
+                "type": "nominal",
+                "options": {
+                    "1": "Wien",
+                    "2": "Niederösterreich",
+                    "3": "Oberösterreich",
+                    "4": "Salzburg",
+                    "5": "Tirol",
+                    "6": "Vorarlberg",
+                    "7": "Steiermark",
+                    "8": "Kärnten",
+                    "9": "Burgenland"
+                }
+            },
+            "v_1749": {
+                "label": "Bildung (höchste)",
+                "type": "ordinal",
+                "options": {
+                    "1": "Pflichtschule",
+                    "2": "Lehre mit Berufsschule",
+                    "3": "Fach- oder Handelsschule",
+                    "4": "Matura",
+                    "5": "Abschluss an einer Universität, (Fach-)Hochschule",
+                    "6": "Anderer Abschluss mit Matura (z.B. Kolleg)",
+                    "7": "Keine Angabe/weiß nicht",
+                    "8": "Sonstiges, und zwar:"
+                }
+            },
+            "v_1747": {
+                "label": "Beruf",
+                "type": "nominal",
+                "options": {
+                    "1": "Unselbstständig erwerbstätig (auch: Lehrling)",
+                    "2": "Selbständig erwerbstätig",
+                    "3": "Arbeitslos", 
+                    "4": "Pensionist(in)",
+                    "5": "Haushaltsführend",
+                    "6": "Schüler(in), Student(in)",
+                    "7": "Dauerhaft arbeitsunfähig",
+                    "8": "Präsenz-/Zivildiener",
+                    "9": "In Elternkarenz",
+                    "10": "Sonstiges"
+                }
+             },
+            "v_71": {
+            "label": "Einkommen",
+            "type": "grouped_metric",
+            "options": {
+                "1": "0 - 901",
+                "2": "901 - 1500",
+                "3": "1501 - 2200",
+                "4": "2201 - 3000",
+                "5": "3001 - 4000",
+                "6": "4001 - 5000",
+                "7": "5001 - 6000",
+                "8": "6001 - 7000",
+                "9": "7001 - 8000",
+                "10": "> 8000",
+                "11": "Keine Angabe/weiß ich nicht"
+            },
+            "ranges": {
+                "1": [0, 901],
+                "2": [901, 1500],
+                "3": [1501, 2200],
+                "4": [2201, 3000],
+                "5": [3001, 4000],
+                "6": [4001, 5000],
+                "7": [5001, 6000],
+                "8": [6001, 7000],
+                "9": [7001, 8000],
+                "10": [8001, null]
+                }
+            },
+            "v_1762": {
+                "label": "Wohnform",
+                "type": "nominal",
+                "options": {
+                    "1": "Hauseigentum",
+                    "2": "Wohnungseigentum",
+                    "3": "Miete (Haus, Wohnung, inkl. Mietkauf)"
+                }
+            },
+            "v_2937": {
+                "label": "Art von Miete",
+                "type": "nominal",
+                "options": {
+                    "1": "Gemeindewohnung",
+                    "2": "Genossenschaftswohnung",
+                    "3": "privat vermietet",
+                    "6": "sonstige"
+                }
+            },
+            "v_1751": {
+                "label": "Alter",
+                "type": "metric"
+            },
+            "dupl1_v_69": {
+                "label": "Anzahl Personen im Haushalt",
+                "type": "metric"
+            },
+            "v_2920": {
+                "label": "Wenn Sie uns zu den Themen dieser Umfrage noch etwas mitteilen möchten, können Sie dies hier gerne tun.",
+                "type": "free_text"
+            },
+            "v_1750": {
+                "label": "Bildung_Sonstiges: offene Antwort",
+                "type": "free_text",
+                "parent": "v_1749"
+            },
+            "v_1748": {
+                "label": "Beruf_Sonstiges: offene Antwort",
+                "type": "free_text",
+                "parent": "v_1747"
+            },
+            "v_2938": {
+                "label": "Mietwohnung_Sonstige: offene Antwort",
+                "type": "free_text",
+                "parent": "v_2937"
+            }
+        },
+        "options": null
+    },
+
+    {
+        "group_id": "importance_benefits_sht",
+        "main_question": "Wie wichtig sind Ihnen die folgenden Vorteile, die mit der Anschaffung einer smarten Technologie einhergehen können?",
+        "items": {
+            "v_2851": {
+                "label": "Komfort",
+                "short": "comfort",
+                "type": "ordinal"
+            },
+            "v_2852": {
+                "label": "Kosteneinsparung",
+                "short": "costs",
+                "type": "ordinal"
+        },
+            "v_2853": {
+                "label": "Sicherheit",
+                "short": "safety",
+                "type": "ordinal"
+            },
+            "v_2854": {
+                "label": "Unterstützung (Assistenz)",
+                "short": "support",
+                "type": "ordinal"
+            },
+            "v_2855": {
+                "label": "Energieeinsparung",
+                "short": "energysaving",
+                "type": "ordinal"
+            },
+            "v_2856": {
+                "label": "Spaß / Unterhaltung",
+                "short": "fun",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "sehr wichtig",
+            "2": "wichtig",
+            "3": "neutral",
+            "4": "unwichtig",
+            "5": "sehr unwichtig"
+        }
+    },
+    {
+        "group_id": "availabilty-interest_smart_technologies",
+        "main_question": "Bitte geben Sie an, ob die folgenden smarten Technologien bereits in Ihrem Haushalt vorhanden sind und wenn nicht, inwieweit Sie Interesse an einer Anschaffung haben",
+        "items": {
+            "v_1709": {
+                "label": "Stromspeicher",
+                "short": "power",
+                "type": "nominal"
+            },
+            "v_1710": {
+                "label": "smarte Jalousien/Rollo",
+                "short": "blind",
+                "type": "nominal"
+            },
+            "v_1711": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "short": "security",
+                "type": "nominal"
+            },
+            "v_1712": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "short": "assistance",
+                "type": "nominal"
+            },
+            "v_1713": {
+                "label": "E-Auto",
+                "short": "car",
+                "type": "nominal"
+            },
+            "v_1714": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "short": "lighting",
+                "type": "nominal"        
+            },
+            "v_1715": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "short": "system",
+                "type": "nominal"
+            },
+            "v_1717": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "short": "voice",
+                "type": "nominal"
+            },
+            "v_1718": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "short": "entertainment",
+                "type": "nominal"
+            },
+            "v_1720": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "short": "kitchen",
+                "type": "nominal"
+            },
+            "v_1722": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "short": "socket",
+                "type": "nominal"
+            },
+            "v_1724": {
+                "label": "Smart Hub",
+                "short": "hub",
+                "type": "nominal"
+            },
+            "v_1726": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "short": "heating",
+                "type": "nominal"
+            },
+            "v_1728": {
+                "label": "Photovoltaikanlage",
+                "short": "photovoltaic",
+                "type": "nominal"
+            },
+            "v_1730": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "short": "robot",
+                "type": "nominal"
+            },
+            "v_1732": {
+                "label": "Energiemanagementsystem",
+                "short": "energy",
+                "type": "nominal"
+            },
+            "v_1734": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "short": "washing",
+                "type": "nominal"
+            },
+            "v_1707": {
+                "label": "Sonstige und zwar",
+                "short": null,
+                "type": "free_text",
+                "parent": null
+            },
+            "v_1719": {
+                "label": "Sonstige und zwar",
+                "short": null,
+                "type": "free_text",
+                "parent": null
+            }
+        },
+        "options": {
+            "1": "bereits vorhanden",
+            "2": "sehr großes Interesse",
+            "3": "großes Interesse",
+            "4": "teils-teils",
+            "5": "wenig Interesse",
+            "6": "gar kein Interesse"
+        }
+    },
+
+    {
+        "group_id": "timeline_integration_sht",
+        "main_question": "In welcher zeitlichen Reihenfolge fanden die smarten Technologien Einzug in Ihren Haushalt?",
+        "items": {
+            "v_2894": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2895": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2896": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2897": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2898": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2899": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2900": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2901": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2902": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2903": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2904": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2905": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2906": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2907": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2908": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2909": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2910": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2911": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            },
+            "v_2918": {
+                "label": "Möchten Sie zu smarten Technologien in Ihrem Haushalt oder deren Reihung noch etwas anmerken?",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "war bereits im Haushalt vorhanden",
+            "2": "als 1. im Haushalt",
+            "3": "als 2. im Haushalt",
+            "4": "als 3. im Haushalt",
+            "5": "als 4. im Haushalt",
+            "6": "als 5. im Haushalt",
+            "7": "als 6. im Haushalt",
+            "8": "als 7. im Haushalt",
+            "9": "als 8. im Haushalt",
+            "10": "als 9. im Haushalt",
+            "11": "als 10. im Haushalt",
+            "12": "zuletzt angeschafft"
+        }
+    },
+
+    {
+        "group_id": "impact_comfort_sht",
+        "main_question": "In welchem Maße denken Sie, dass die smarten Technologien einen Komfortgewinn im Haushalt mit sich bringen?",
+        "items": {
+            "v_2702": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2703": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2704": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2705": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2706": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2707": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2708": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2709": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2710": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2711": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2712": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2713": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2714": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2715": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2716": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2717": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2718": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2719": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "impact_assistance-support_sht",
+        "main_question": "In welchem Maße denken Sie, dass die smarten Technologien Assistenz und Unterstützung im Haushalt mit sich bringen? ",
+        "items": {
+            "v_2756": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2757": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2758": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2759": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2760": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2761": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2762": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2763": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2764": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2765": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2766": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2767": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2768": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2769": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2770": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2771": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2772": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2773": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "impact_energysaving_sht",
+        "main_question": "In welchem Maße denken Sie, dass die smarten Technologien Energieeinsparungen im Haushalt mit sich bringen?",
+        "items": {
+            "v_2720": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2721": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2722": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2723": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2724": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2725": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2726": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2727": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2728": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2729": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2730": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2731": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2732": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2733": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2734": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2735": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2736": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2737": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "impact_security_sht",
+        "main_question": "In welchem Maße denken Sie, dass smarte Technologien Sicherheit im Haushalt mit sich bringen? ",
+        "items": {
+            "v_2738": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2739": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2740": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2741": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2742": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2743": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2744": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2745": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2746": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2747": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2748": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2749": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2750": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2751": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2752": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2753": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2754": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2755": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "impact_entertainment_sht",
+        "main_question": "In welchem Maße denken Sie, dass die smarten Technologien Spaß und Unterhaltung im Haushalt mit sich bringen?",
+        "items": {
+            "v_2774": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2775": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2776": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2777": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2778": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2779": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2780": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2781": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2782": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2783": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2785": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2787": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2789": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2791": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2793": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2795": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2797": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2799": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "impact_savings_sht",
+        "main_question": "In welchem Maße denken Sie, dass die smarten Technologien Kosteneinsparungen bzw. finanzielle Vorteile im Haushalt mit sich bringen?",
+        "items": {
+            "v_2784": {
+                "label": "Stromspeicher",
+                "type": "ordinal"
+            },
+            "v_2786": {
+                "label": "smarte Jalousien/Rollo",
+                "type": "ordinal"
+            },
+            "v_2788": {
+                "label": "Smarte(s) Sicherheitsgeräte/-system (z.B. smartes Türschloss wie Nuki, Kamera)",
+                "type": "ordinal"
+            },
+            "v_2790": {
+                "label": "smarte Gesundheits- und Assistenzgeräte",
+                "type": "ordinal"
+            },
+            "v_2792": {
+                "label": "E-Auto",
+                "type": "ordinal"
+            },
+            "v_2794": {
+                "label": "smarte Beleuchtung (z.B. smarte Lampen/LED, Bewegungsmelder, Systeme wie Philips Hue)",
+                "type": "ordinal"
+            },
+            "v_2796": {
+                "label": "Smart Home Systemlösung (z.B. Google Home, Apple Home, Loxone, Somfy)",
+                "type": "ordinal"
+            },
+            "v_2798": {
+                "label": "Sprachassistenten (z.B. Siri, Alexa, Google Assistant)",
+                "type": "ordinal"
+            },
+            "v_2800": {
+                "label": "Smart Entertainment (z.B. Smart TV, Musik)",
+                "type": "ordinal"
+            },
+            "v_2801": {
+                "label": "smarte Küchengeräte (z.B. smarter Kühlschrank, Herd, Thermomix, Wasserkocher)",
+                "type": "ordinal"
+            },
+            "v_2802": {
+                "label": "smarte Steckdose (Smart Plug)",
+                "type": "ordinal"
+            },
+            "v_2803": {
+                "label": "Smart Hub",
+                "type": "ordinal"
+            },
+            "v_2804": {
+                "label": "smarte(r) Thermostat, Heizungssteuerung / -system (z.B. Tado)",
+                "type": "ordinal"
+            },
+            "v_2805": {
+                "label": "Photovoltaikanlage",
+                "type": "ordinal"
+            },
+            "v_2806": {
+                "label": "Haushaltsroboter (z.B. Staubsauber- und Rasenroboter)",
+                "type": "ordinal"
+            },
+            "v_2807": {
+                "label": "Energiemanagementsystem",
+                "type": "ordinal"
+            },
+            "v_2808": {
+                "label": "smarte(r) Waschmaschine und/oder Trockner",
+                "type": "ordinal"
+            },
+            "v_2809": {
+                "label": "Sonstige und zwar",
+                "type": "free_text"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "stimme zu",
+            "3": "neutral",
+            "4": "stimme nicht zu",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "opinion_sht",
+        "main_question": "In welchem Maße stimmen Sie den beschriebenen 3 Meinungen zu smarten Energietechnologien zu?",
+        "items": {
+            "v_1573": {
+                "label": "Smarte Energietechnologien ermöglichen eine bessere Steuerung von Haushaltstechnik und damit Energieeinsparungen! Dies betrifft vor allem das Heizen, wo man mit smarten Energietechnologien in Kombination mit einer Dämmung bzw. integriert in die Gebäudeplanung wirklich Energie einspart. Smarte Energietechnologien sind ein wichtiges Puzzleteil, zur Etablierung eines nachhaltigen, stabilen und smarten Stromnetzes, wobei sie auch ohne das Internet funktionsfähig sind.",
+                "type": "ordinal"
+            },
+            "v_1574": {
+                "label": "Kritisch zu sehen bei smarten Energietechnologien ist definitiv der Datenschutz bzw. Schutz der Privatsphäre! Es ist auch fraglich, wie nachhaltig, kostensparend und benutzerfreundlich diese Technologien sind. Komfortgewinn bringen smarte Energietechnologien eher nicht mit sich. Sie tragen zwar bei, Energie zu sparen, aber richtig erst bei einer vorab Berücksichtigung in der Gebäudeplanung. Fazit: es handelt sich um weitere Technik im Haushalt, die nicht unbedingt notwendig ist.",
+                "type": "ordinal"
+            },
+            "v_1575": {
+                "label": "Der Vorteil von smarten Energietechnologien liegt klar auf der Hand: Komfortgewinn! Smarte Energietechnologien stehen für einen modernen, 'intelligenten' Haushalt, der zu einem nachhaltigen Energiesystem beiträgt. Wenn Anbieter smarter Energietechnologien über mein Nutzungsverhalten Bescheid wissen, ist das nicht unbedingt schlimm. Auch die Gefahr von Manipulationen durch Stromanbieter sind eher gering. Kritische Stimmen muten da eher Verschwörungstheorien an.",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "stimme eher zu",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "stimme eher nicht zu"
+        }
+    },
+
+    {
+        "group_id": "opinion_sht",
+        "main_question": "Welches Meinungsbild stimmt am ehesten mit Ihrer Meinung über smarte Energietechnologien überein?",
+        "items": {
+            "v_2936": {
+                "label": "Welches Meinungsbild stimmt am ehesten mit Ihrer Meinung über smarte Energietechnologien überein?",
+                "type": "nominal"
+            }
+        },
+        "options": {
+            "1": "Smarte Energietechnologien ermöglichen eine bessere Steuerung von Haushaltstechnik und damit Energieeinsparungen! Dies betrifft vor allem das Heizen, wo man mit smarten Energietechnologien in Kombination mit einer Dämmung bzw. integriert in die Gebäudeplanung wirklich Energie einspart. Smarte Energietechnologien sind ein wichtiges Puzzleteil, zur Etablierung eines nachhaltigen, stabilen und smarten Stromnetzes, wobei sie auch ohne das Internet funktionsfähig sind.",
+            "2": "Kritisch zu sehen bei smarten Energietechnologien ist definitiv der Datenschutz bzw. Schutz der Privatsphäre! Es ist auch fraglich, wie nachhaltig, kostensparend und benutzerfreundlich diese Technologien sind. Komfortgewinn bringen smarte Energietechnologien eher nicht mit sich. Sie tragen zwar bei, Energie zu sparen, aber richtig erst bei einer vorab Berücksichtigung in der Gebäudeplanung. Fazit: es handelt sich um weitere Technik im Haushalt, die nicht unbedingt notwendig ist.",
+            "3": "Der Vorteil von smarten Energietechnologien liegt klar auf der Hand: Komfortgewinn! Smarte Energietechnologien stehen für einen modernen, 'intelligenten' Haushalt, der zu einem nachhaltigen Energiesystem beiträgt. Wenn Anbieter smarter Energietechnologien über mein Nutzungsverhalten Bescheid wissen, ist das nicht unbedingt schlimm. Auch die Gefahr von Manipulationen durch Stromanbieter sind eher gering. Kritische Stimmen muten da eher Verschwörungstheorien an."
+        }
+    },
+
+    {
+        "group_id": "opinion_sht",
+        "main_question": "Möchten Sie zu diesen Meinungsbildern noch etwas anmerken?",
+        "items": {
+            "v_2919": {
+                "label": "Möchten Sie zu diesen Meinungsbildern noch etwas anmerken?",
+                "type": "free_text"
+            }
+        },
+        "options": null
+    },
+
+    {
+        "group_id": "opinion_sht",
+        "main_question": "Bitte geben Sie zu jeder Aussage an, in welchem Maße Sie zustimmen.",
+        "items": {
+            "v_1625": {
+                "label": "Hinsichtlich technischer Neuentwicklungen bin ich sehr neugierig.",
+                "type": "ordinal"
+            },
+            "v_1626": {
+                "label": "Ich finde schnell Gefallen an technischen Neuentwicklungen.",
+                "type": "ordinal"
+            },
+            "v_1627": {
+                "label": "Ich bin stets daran interessiert, die neuesten technischen Geräte zu verwenden.",
+                "type": "ordinal"
+            },
+            "v_1628": {
+                "label": "Wenn ich Gelegenheit dazu hätte, würde ich noch viel häufiger technische Produkte nutzen, als ich das gegenwärtig tue.",
+                "type": "ordinal"
+            },
+            "v_1629": {
+                "label": "Im Umgang mit moderner Technik habe ich oft Angst, zu versagen.",
+                "type": "ordinal"
+            },
+            "v_1630": {
+                "label": "Für mich stellt der Umgang mit technischen Neuerungen zumeist eine Überforderung dar.",
+                "type": "ordinal"
+            },
+            "v_1631": {
+                "label": "Ich habe Angst, technische Neuentwicklungen eher kaputt zu machen, als dass ich sie richtig benutze.",
+                "type": "ordinal"
+            },
+            "v_1632": {
+                "label": "Den Umgang mit neuer Technik finde ich schwierig - ich kann das meistens einfach nicht.",
+                "type": "ordinal"
+            },
+            "v_1633": {
+                "label": "Ob ich erfolgreich in der Anwendung moderner Technik bin, hängt im Wesentlichen von mir ab.",
+                "type": "ordinal"
+            },
+            "v_1634": {
+                "label": "Es liegt in meiner Hand, ob mir die Nutzung technischer Neuentwicklungen gelingt – mit Zufall oder Glück hat das wenig zu tun.",
+                "type": "ordinal"
+            },
+            "v_1635": {
+                "label": "Wenn ich im Umgang mit Technik Schwierigkeiten habe, hängt es schlussendlich allein von mir ab, dass ich sie löse.",
+                "type": "ordinal"
+            },
+            "v_1754": {
+                "label": "Bitte wählen Sie Antwortoption 'stimme voll und ganz zu' aus, um zu zeigen, dass Sie aufmerksam sin",
+                "type": "ordinal"
+            },
+            "v_1658": {
+                "label": "Ich finde es anerkennenswert, wenn andere Leute in ihrem Haushalt Energie einsparen.",
+                "type": "ordinal"
+            },
+            "v_1659": {
+                "label": "Ich finde es wichtig, dass die Energiesparmöglichkeiten durch Wärmedämmung und Isolierverglasung genutzt werden.",
+                "type": "ordinal"
+            },
+            "v_1660": {
+                "label": "Meiner Auffassung nach ist es günstiger, im Winter zum Lüften das Fenster ständig gekippt zu halten, als es kurze Zeit ganz zu öffnen.",
+                "type": "ordinal"
+            },
+            "v_1661": {
+                "label": "Ich halte es für nicht zumutbar, von den Leuten zu verlangen, ihren Strom- oder Gasverbrauch regelmäßig zu kontrollieren, um Energie zu sparen.",
+                "type": "ordinal"
+            },
+            "v_1662": {
+                "label": "Um Strom zu sparen, benutze ich verbrauchsarme Geräte und/oder Energiesparlampen.",
+                "type": "ordinal"
+            },
+            "v_1663": {
+                "label": "Beim Kochen benutze ich einen Deckel für Topf oder Pfanne, damit nicht unnötig Energie verlorengeht.",
+                "type": "ordinal"
+            },
+            "v_1664": {
+                "label": "Wenn es in der Wohnung etwas kühler ist, drehe ich die Heizung auf oder verwende einen Heizlüfter, statt mich wärmer anzuziehen.",
+                "type": "ordinal"
+            },
+            "v_1665": {
+                "label": "Ich verzichte auf Elektrogeräte wie Büchsenöffner, Elektromesser, Entsafter etc., auch wenn das mehr Handarbeit mit sich bringt.",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "stimme überhaupt nicht zu"
+        }
+    },
+
+    {
+        "group_id": "management_sht",
+        "main_question": "Welche der folgenden Optionen würden Sie in Betracht ziehen zur Steuerung von smarten Energietechnologien?",
+        "items": {
+            "v_1588": {
+                "label": "Smartphone",
+                "type": "ordinal"
+            },
+            "v_1589": {
+                "label": "Laptop/PC",
+                "type": "ordinal"
+            },
+            "v_1590": {
+                "label": "Tablet",
+                "type": "ordinal"
+            },
+            "v_1591": {
+                "label": "Smart TV",
+                "type": "ordinal"
+            },
+            "v_1592": {
+                "label": "separate Steuerungsanzeige",
+                "type": "ordinal"
+            },
+            "v_1593": {
+                "label": "Wearables (z.B.Smart Watch)",
+                "type": "ordinal"
+            },
+            "v_1594": {
+                "label": "Sprachassistent (z. B. Siri, Alexa)",
+                "type": "ordinal"
+            },
+            "v_1595": {
+                "label": "Gestensteuerug",
+                "type": "ordinal"
+            },
+            "v_2934": {
+                "label": "keine der genannten",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "stimme überhaupt nicht zu (5)"
+        }
+    },
+
+    {
+        "group_id": "type_funding_sht",
+        "main_question": "Welche Art der Finanzierung spricht Sie für smarte Energietechnologien eher an?",
+        "items": {
+            "v_1599": {
+                "label": "Einmalzahlung für smarte Energieprodukte (einmalige Fixzahlung, keine wiederkehrende Gebühr)",
+                "type": "ordinal"
+            },
+            "v_1600": {
+                "label": "Die Kosten für smarte Energieprodukte sind in einem Abo/einer wiederkehrenden Gebühr enthalten (z.B. monatliche Pauschalzahlung)",
+                "type": "ordinal"
+            },
+            "v_1601": {
+                "label": "Die Kosten für das smarte Energieprodukte sind in einem Abo/einer wiederkehrenden Gebühr im Zusammenhang mit dem Betrieb des Produkts zu zahlen (z.B. Gebühr pro verbrauchter Betriebsstunde)",
+                "type": "ordinal"
+                }
+        },
+        "options": {
+            "1": "spricht micht sehr an (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "spricht mich gar nicht an (5)"
+        }
+    },
+
+    {
+        "group_id": "type_information_sht",
+        "main_question": "Welche Art von Information sollen smarte Energietechnologien bevorzugt liefern?",
+        "items": {
+            "v_1577": {
+                "label": "reine Information",
+                "type": "ordinal"
+            },
+            "v_1578": {
+                "label": "Vorschläge für Verbesserungen",
+                "type": "ordinal"
+            },
+            "v_1579": {
+                "label": "Erinnerungshilfen / Alerts",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "sehr wichtig (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "sehr unwichtig (5)"
+        }
+    },
+
+    {
+        "group_id": "type_design_implementation_sht",
+        "main_question": "Welche Designlösung spricht Sie bei smarten Energietechnologien eher an? Eine...",
+        "items": {
+            "v_2922": {
+                "label": "modulare Lösung (mehrere Produkte), die in Zukunft erweitert werden kann",
+                "type": "ordinal"
+            },
+            "v_2923": {
+                "label": "integrierte, zentrale Lösung, die nicht erweitert werden muss",
+                "type": "ordinal"
+            },
+            "v_2924": {
+                "label": "Lösung, die gut im Haushalt erkennbar ist",
+                "type": "ordinal"
+            },
+            "v_2925": {
+                "label": "Lösung die sich in den Hintergrund einfügt",
+                "type": "ordinal"
+            },
+            "v_2926": {
+                "label": "Lösung die immer eingeschaltet und aktiv ist",
+                "type": "ordinal"
+            },
+            "v_2927": {
+                "label": "Lösung die nur funktioniert, wenn sie aktiviert ist",
+                "type": "ordinal"
+            },
+            "v_2928": {
+                "label": "Lösung, die lokal auch ohne Internetverbindung funktioniert",
+                "type": "ordinal"
+            },
+            "v_2929": {
+                "label": "Lösung, die mit dem Internet verbunden ist",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "stimme überhaupt nicht zu (5)"
+        }
+    },
+
+    {
+        "group_id": "type_design_management_sht",
+        "main_question": "Welche Art von Steuerung sollen smarte Energietechnologien bevorzugt anbieten? (q_13094817 - Typ 311)",
+        "items": {
+            "v_1596": {
+                "label": "erweiterte manuelle Steuerung von Geräten",
+                "type": "ordinal"
+            },
+            "v_1597": {
+                "label": "Steuerung durch Automatisierung",
+                "type": "ordinal"
+            },
+            "v_1598": {
+                "label": "Steuerung durch künstliche Intelligenz bzw. maschinelles Lernen",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "sehr wichtig (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "sehr unwichtig (5)"
+        }
+    },
+
+    {
+        "group_id": "sustainability_energy_sht",
+        "main_question": "Um unseren Energiekonsum nachhaltig zu verändern, braucht es ...",
+        "items": {
+            "v_2884": {
+                "label": "… individuelle Maßnahmen, d.h. jede Person muss Verantwortung übernehmen.  - … gesellschaftliche Maßnahmen, d.h. Verantwortung muss auf (inter-)nationaler Ebene getragen werden.",
+                "type": "ordinal",
+                "options": {
+                    "1": "Skalenoption 1 … individuelle Maßnahmen, d.h. jede Person muss Verantwortung übernehmen.",
+                    "2": "Skalenoption 2",
+                    "3": "Skalenoption 3",
+                    "4": "Skalenoption 4",
+                    "5": "Skalenoption 5 … gesellschaftliche Maßnahmen, d.h. Verantwortung muss auf (inter-)nationaler Ebene getragen werden."
+                }
+            },
+            "v_2885": {
+                "label": "… eine Verhaltensänderung im täglichen Leben.  - … bestimmte Technologien.",
+                "type": "ordinal",
+                "options": {
+                    "1": "Skalenoption 1 … eine Verhaltensänderung im täglichen Leben.",
+                    "2": "Skalenoption 2",
+                    "3": "Skalenoption 3",
+                    "4": "Skalenoption 4",
+                    "5": "Skalenoption 5 … bestimmte Technologien."
+                }
+            },
+            "v_2886": {
+                "label": "… eigenes Wissen und Bewusstsein über Handlungs- möglichkeiten.  - … Vorgaben, Richtlinien und Anreize als Handlungsanweisung.",
+                "type": "ordinal",
+                "options": {
+                    "1": "Skalenoption 1 … eigenes Wissen und Bewusstsein über Handlungs- möglichkeiten.",
+                    "2": "Skalenoption 2",
+                    "3": "Skalenoption 3",
+                    "4": "Skalenoption 4",
+                    "5": "Skalenoption 5 … Vorgaben, Richtlinien und Anreize als Handlungsanweisung."
+                }
+            },
+            "v_2887": {
+                "label": "… Verzicht. - … keinen Verzicht.",
+                "type": "ordinal",
+                "options": {
+                    "1": "Skalenoption 1 … Verzicht.",
+                    "2": "Skalenoption 2",
+                    "3": "Skalenoption 3",
+                    "4": "Skalenoption 4",
+                    "5": "Skalenoption 5 … keinen Verzicht."
+                }
+            }
+        },
+        "options": null
+    },
+
+    {
+        "group_id": "sustainability_energy_sht",
+        "main_question": "Bitte geben Sie zu jeder Aussage an, in welchem Maße Sie zustimmen. ",
+        "items": {
+            "v_1642": {
+                "label": "Es ist mir wichtig, dass die Produkte, die ich verwende, das Klima nicht belasten/schädigen.",
+                "type": "ordinal"
+            },
+            "v_1643": {
+                "label": "Bei vielen meiner Entscheidungen berücksichtige ich die möglichen Klimaauswirkungen meines Handelns.",
+                "type": "ordinal"
+            },
+            "v_1644": {
+                "label": "Ich bin besorgt über die Verschwendung der Ressourcen unseres Planeten.",
+                "type": "ordinal"
+            },
+            "v_1645": {
+                "label": "Ich würde mich als verantwortungsbewusst im Umgang mit Umwelt und Klima bezeichnen.",
+                "type": "ordinal"
+            },
+            "v_1646": {
+                "label": "Meine Kaufgewohnheiten werden durch meine Sorge um unser Klima beeinflusst.",
+                "type": "ordinal"
+            },
+            "v_1647": {
+                "label": "Ich bin bereit, Unannehmlichkeiten in Kauf zu nehmen, um klimafreundliche Maßnahmen zu ergreifen.",
+                "type": "ordinal"
+            },
+            "v_2931": {
+                "label": "Menschen, die mir wichtig sind, denken, dass ich smarte Energietechnologien verwenden sollte.",
+                "type": "ordinal"
+            },
+            "v_2932": {
+                "label": "Menschen, die mir nahe stehen, finden, dass ich smarte Energietechnologien verwenden sollte.",
+                "type": "ordinal"
+            },
+            "v_2933": {
+                "label": "Menschen, deren Meinung ich schätze, bevorzugen, dass ich smarte Energietechnologien verwende.",
+                "type": "ordinal"
+            }
+        },
+        "options": {
+            "1": "stimme voll und ganz zu (1)",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "stimme überhaupt nicht zu (5)"
+        }
+    }
+]
