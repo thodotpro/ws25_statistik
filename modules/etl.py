@@ -141,6 +141,15 @@ class Etl:
     def _encoding_check(self, encoding):
         if encoding not in self.get_encoding():
             raise ValueError('Invalid Encoding')
+        
+    def get_ordinal_data(self) -> List:
+        pass
+
+    def get_metric_type(self) -> List:
+        pass
+
+    def get_nominal_type(self) -> List:
+        pass
 
 
         
