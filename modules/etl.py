@@ -142,6 +142,19 @@ class Etl:
         if encoding not in self.get_encoding():
             raise ValueError('Invalid Encoding')
 
+    def get_main_question(self, encoding: str) -> str:
+        """
+        Returns the main question for a given encoding.
+        :param encoding: Encoded question (e.g., 'v_2897')
+        :return: Main question string
+        """
+        for group in self.codebook.to_dict('records'):
+            if encoding in group.get('items', {}):
+                return group.get('main_question', '')
+        return ''
+        
+
+
 
         
 if __name__ == "__main__":
