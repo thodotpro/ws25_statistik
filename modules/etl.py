@@ -148,6 +148,7 @@ class Etl:
         :param encoding: Encoded question (e.g., 'v_2897')
         :return: Main question string
         """
+        self._encoding_check(encoding)
         for group in self.codebook.to_dict('records'):
             if encoding in group.get('items', {}):
                 return group.get('main_question', '')
