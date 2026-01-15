@@ -1,0 +1,203 @@
+---
+title: Explorative Datenanalyse
+subject: Erweiterte Methoden der Statistik
+author: Michael de Lorenzo, Stefan Ebner, Thomas Proksch, Victoria Uller
+affiliation: FH Campus02
+year: WS25
+---
+
+#### Installation Packages
+
+```{r}
+install.packages('pacman')
+library(pacman)
+
+p_load(tidyverse, ggplot2)
+```
+
+#### Laden des Datensatzes
+
+```{r}
+data <- read.csv('data/data_project_metset.csv', sep=';')
+```
+
+#### Überblick Datensatz (data)
+
+```{r}
+dim(data) # Dimension
+str(data) # Datentypen
+head(data, 10) # Erste Zeilen
+```
+
+#### Namen der Spalten
+
+```{r}
+dirty_col_names <- names(data)
+```
+
+#### Entfernen von Merkmalen, bei denen die Kodierung unbekannt ist
+
+```{r}
+data <- data %>% select(!starts_with('rts'))
+names(data)
+```
+
+#### Entfernen irrelevanter Spalen
+
+```{r}
+cols_to_remove <- c('lfdn', 'external_lfdn', 'tester', 'dispcode', 'lastpage',
+'duration', 'p_0001', 'browser', 'referer', 'device_type', 'quota', 'quota_assignment', 'quota_rejected_id', 'page_history', 'hflip', 'vflip', 'output_mode', 'javascript', 'flash', 'session_id', 'language', 'cleaned', 'ats')
+
+data <- data %>% select(!any_of(cols_to_remove))
+names(data)
+```
+
+#### Entfernen aller Spalten mit nur einer Auspraegung
+
+```{r}
+data <- data %>% select(where(~ n_distinct(.) > 1))
+names(data)
+dim(data) # Gesamt 53 Merkmale entfernt
+```
+
+#### Ersetzen der Werte \[0, -66, -77, -99\] durch NA
+
+```{r}
+data %>% is.na() %>% sum()
+head(data)
+```
+
+```{r}
+data_na <- c(0, '0', -66, '-66', -77, '-77', -99, '-99')
+
+data <- data %>% mutate(across(everything(), ~replace(., . %in% data_na, NA)))
+
+data %>% is.na() %>% sum()
+head(data)
+```
+
+#### Entfernen von Reihen in denen das Wort 'test' vorkommt
+
+```{r}
+data <- data %>% select(!matches('test', ignore.case=TRUE))
+head(data)
+```
+
+#### Test NA.omit
+
+```{r}
+data_omit <- data %>% na.omit()
+dim(data)
+dim(data_omit) # So viele NA's dass nichts mehr uebrig bleibt lol
+```
+
+#### Spalten richtigen Datentyp zuweisen
+
+##### Nominal
+
+```{r}
+data_nominal = c('v_1752', 'v_1753', 'v_1747', 'v_1762', 'v_2937', 'v_1709', 'v_1710', 'v_1711', 'v_1712', 'v_1713', 'v_1714', 'v_1715', 'v_1717', 'v_1718', 'v_1720', 'v_1722', 'v_1724', 'v_1726', 'v_1728', 'v_1730', 'v_1732', 'v_1734', 'v_2936')
+
+data <- data %>% mutate(across(any_of(data_nominal), as.factor))
+str(data)
+```
+
+##### Gruppiert Quantitativ (Einkommen)
+
+```{r}
+
+data$v_71
+
+data <- data %>%
+  mutate(v_71 = factor(
+    v_71, 
+    levels = as.character(1:10), 
+    labels = c(
+      "0 - 901", "901 - 1500", "1501 - 2200", "2201 - 3000", 
+      "3001 - 4000", "4001 - 5000", "5001 - 6000", "6001 - 7000", 
+      "7001 - 8000", "> 8000"
+    ),
+    ordered = TRUE
+  ))
+
+data$v_71
+str(data$v_71)
+```
+
+##### String Daten (Offene Fragen)
+
+```{r}
+data_string <- c('v_2920', 'v_1750', 'v_1748', 'v_2938', 'v_1707', 'v_1719', 'v_2911', 'v_2918', 'v_2719', 'v_2773', 'v_2737', 'v_2755', 'v_2799', 'v_2809', 'v_2919')
+
+data <- data %>% mutate(across(any_of(data_string), as.character))
+str(data$v_2737)
+```
+
+```{r}
+str(data)
+```
+
+##### Ordinale Daten
+
+```{r}
+data <- data %>%
+  mutate(across(where(is.numeric), ~ factor(., ordered = TRUE)))
+```
+
+#### Quantitative Daten
+
+```{r}
+data_metric <- c('v_1751', 'dupl1_v_69')
+
+data <- data %>% mutate(across(any_of(data_metric), as.integer))
+
+str(data$v_1751)
+str(data$dupl1_v_69)
+```
+
+```{r}
+str(data)
+```
+
+#### Plot der Verteilung der Demographischen Daten
+
+```{r}
+data %>%
+  filter(!is.na(v_71)) %>% # Remove the "Keine Angabe" NAs for the plot
+  ggplot(aes(x = v_71)) +
+  geom_bar(fill = "darkseagreen") +
+  theme_minimal() +
+  labs(title = "Verteilung des Einkommens",
+       x = "Einkommensklasse",
+       y = "Anzahl") +
+  coord_flip() # Flip it to make the long labels easier to read
+```
+
+```{r}
+data %>%
+  select(v_1752, v_1753, v_1749, v_1747, v_1762, v_2937, v_1751, dupl1_v_69) %>%
+  pivot_longer(everything(), 
+               names_to = "variable", 
+               values_to = "value",
+               values_transform = as.character) %>% 
+  filter(!is.na(value)) %>%
+  # Rename the variables here
+  mutate(variable = fct_recode(variable,
+    "Geschlecht" = "v_1752",
+    "Bundesland" = "v_1753",
+    "Bildung" = "v_1749",
+    "Beruf" = "v_1747",
+    "Wohnform" = "v_1762",
+    "Art von Miete" = "v_2937",
+    "Alter" = "v_1751",
+    "Haushaltsgröße" = "dupl1_v_69"
+  )) %>%
+  ggplot(aes(x = value)) +
+  geom_bar(fill = "darkseagreen") +
+  facet_wrap(~variable, scales = "free") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Verteilung der demografischen Merkmale",
+       x = NULL, 
+       y = "Anzahl")
+```
