@@ -12,6 +12,8 @@ Wir sind die Firma shtR's und verkaufen IoT. Marketing Abteilung hat Umfrage gem
 
 [] Genaue Korrelation von stark korrelierenden Themen
 
+[] MAD - Median absolute deviation. Um zu sehen ob die Median Korrelationen ueberhaupt Sinn machen
+
 [] Wie/Wo Kundengewinnen
 
 [] Ads etc
