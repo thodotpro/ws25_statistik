@@ -7,10 +7,16 @@ year: WS25
 ```
 
 Vorschlag fuer weiterere EDA (Idee!):
+
 Wir sind die Firma shtR's und verkaufen IoT. Marketing Abteilung hat Umfrage gemacht und will fuer strategisches Marketing wissen, fuer welche Kunden sie werben sollen oder wie? Interessen etc.
+
 [] Genaue Korrelation von stark korrelierenden Themen
+
 [] Wie/Wo Kundengewinnen
+
 [] Ads etc
+
+[] Logistische Regression fuer Kundengewinnung? Wie W! dass jemand SHT kaufen wuerden fuer Ads oder so?
 
 
 # Einleitung
