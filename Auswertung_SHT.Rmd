@@ -1,0 +1,603 @@
+---
+title: Explorative Datenanalyse
+subject: Erweiterte Methoden der Statistik
+author: Michael de Lorenzo, Stefan Ebner, Thomas Proksch, Victoria Uller
+affiliation: FH Campus02
+year: WS25
+---
+
+```{r packages, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+# Benötigte Pakete laden
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+library(RColorBrewer)
+library(ggcorrplot)
+```
+
+```{r data-loading}
+# Daten laden (Bitte den Pfad anpassen, falls die Daten neu geladen werden müssen)
+data <- read.csv("data/data_project_metset.csv", sep = ";") 
+```
+
+## überblick
+
+```{r}
+summary(data)
+str(data)
+head(data)
+dim(data)
+```
+
+## 1. Datenbereinigung
+
+```{r data-cleaning}
+# Metrische Variablen definieren
+data_metric <- c('v_1751', 'dupl1_v_69')
+
+# Ordinale Daten (ohne die metrischen Spalten) in Faktoren umwandeln
+data <- data |>
+  mutate(across(
+    .cols = where(is.numeric) & !any_of(data_metric), 
+    .fns = ~ factor(., ordered = TRUE)
+  ))
+
+# Quantitative Daten bleiben numerisch/integer
+data <- data |> 
+  mutate(across(any_of(data_metric), as.integer))
+
+# Einkommen (v_71) Labels anpassen laut Codebook
+data <- data |>
+  mutate(v_71 = factor(v_71, 
+                       levels = 1:11, 
+                       labels = c("0 - 900", "901 - 1500", "1501 - 2200", "2201 - 3000", 
+                                  "3001 - 4000", "4001 - 5000", "5001 - 6000", "6001 - 7000", 
+                                  "7001 - 8000", "> 8001", "Keine Angabe")))
+```
+
+```{r}
+str(data)
+```
+## 2. Demografische Daten
+
+```{r demographics, fig.width=12, fig.height=8}
+# 1. Geschlecht
+p_geschlecht <- ggplot(data, aes(x = v_1752)) +
+  geom_bar(fill = "steelblue") +
+  scale_x_discrete(labels = c("1" = "weiblich", "2" = "männlich", "3" = "inter", "4" = "divers", "5" = "offen", "6" = "kA")) +
+  labs(title = "Geschlecht", x = NULL, y = "Anzahl") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 2. Alter
+p_alter <- ggplot(data, aes(x = v_1751)) +
+  geom_histogram(binwidth = 5, fill = "darkorange", color = "white") +
+  labs(title = "Alter", x = "Jahre", y = "Anzahl") +
+  theme_minimal()
+
+# 3. Bundesland
+p_bundesland <- ggplot(data, aes(x = v_1753)) +
+  geom_bar(fill = "lightgreen") +
+  scale_x_discrete(labels = c("1" = "W", "2" = "NÖ", "3" = "OÖ", "4" = "Sbg", "5" = "T", "6" = "Vbg", "7" = "Stmk", "8" = "Ktn", "9" = "Bgl")) +
+  labs(title = "Bundesland", x = NULL, y = "Anzahl") +
+  theme_minimal()
+
+# 4. Bildung
+p_bildung <- ggplot(data, aes(x = v_1749)) +
+  geom_bar(fill = "orchid") +
+  scale_x_discrete(labels = c("1" = "Pflicht.", "2" = "Lehre", "3" = "HaSch", "4" = "Matura", "5" = "Uni", "6" = "Matura s.", "7" = "kA", "8" = "Sonst.")) +
+  labs(title = "Bildung", x = NULL, y = "Anzahl") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 5. Beruf
+p_beruf <- ggplot(data, aes(x = v_1747)) +
+  geom_bar(fill = "gold") +
+  scale_x_discrete(labels = c("1" = "Unselbst.", "2" = "Selbst.", "3" = "Arbeitslos", "4" = "Pension", "5" = "Haushalt", "6" = "Schüler/Stud.", "7" = "Arbeitsunf.", "8" = "Zivild.", "9" = "Karenz", "10" = "Sonst.")) +
+  labs(title = "Beruf", x = NULL, y = "Anzahl") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 6. Einkommen
+p_einkommen <- ggplot(data, aes(x = v_71)) +
+  geom_bar(fill = "forestgreen") +
+  labs(title = "Einkommen", x = NULL, y = "Anzahl") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Kombinieren mit patchwork
+(p_geschlecht | p_alter | p_bundesland) / (p_bildung | p_beruf | p_einkommen) + 
+  plot_annotation(title = "Demografische Übersicht der Stichprobe")
+```
+
+## 3. Auswertung der Hauptfragen (Main Questions)
+
+### 3.1 Wichtigkeit von Vorteilen
+```{r importance-benefits}
+labels_importance <- c("1" = "sehr wichtig", "2" = "wichtig", "3" = "neutral", "4" = "unwichtig", "5" = "sehr unwichtig")
+
+data_importance_benefits <- data |>
+  select(
+    "Komfort" = v_2851, "Kosteneinsparung" = v_2852, "Sicherheit" = v_2853,
+    "Assistenz" = v_2854, "Energieeinsparung" = v_2855, "Spaß/Unterhaltung" = v_2856
+  )
+
+data_importance_benefits |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Vorteil", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Vorteil, fill = factor(Antwort, levels = c(names(labels_importance), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Wichtigkeit", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_importance, "NA" = "Keine Angabe")) +
+  labs(title = "Wichtigkeit der Vorteile von SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.2 Verfügbarkeit und Interesse
+```{r availability-interest}
+labels_availability <- c("1" = "bereits vorhanden", "2" = "sehr großes Interesse", "3" = "großes Interesse", "4" = "teils-teils", "5" = "wenig Interesse", "6" = "gar kein Interesse")
+
+data_availability_interest <- data |>
+  select(
+    "Stromspeicher" = v_1709, "Jalousie" = v_1710, "Sicherheit" = v_1711, "Gesundheit" = v_1712,
+    "E-Auto" = v_1713, "Beleuchtung" = v_1714, "Smart Home" = v_1715, "Sprachassistent" = v_1717,
+    "Entertainement" = v_1718, "Küche" = v_1720, "Steckdose" = v_1722, "Smart Hub" = v_1724,
+    "Thermostat" = v_1726, "PV-Anlage" = v_1728, "Haushaltsroboter" = v_1730, "Energiemanagement" = v_1732, "Waschmaschine" = v_1734
+  )
+
+data_availability_interest |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_availability), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Status", values = c(brewer.pal(6, "RdYlBu"), "grey80"), labels = c(labels_availability, "NA" = "Keine Angabe")) +
+  labs(title = "Verfügbarkeit und Interesse an SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.3 Auswirkungen: Komfortgewinn
+```{r impact-comfort}
+labels_impact <- c("1" = "stimme voll und ganz zu", "2" = "stimme zu", "3" = "neutral", "4" = "stimme nicht zu", "5" = "stimme überhaupt nicht zu")
+
+data_impact_comfort <- data |>
+  select(
+    "Stromspeicher" = v_2702, "Jalousien/Rollo" = v_2703, "Sicherheit" = v_2704, "Gesundheit/Assistenz" = v_2705,
+    "E-Auto" = v_2706, "Beleuchtung" = v_2707, "Smart Home System" = v_2708, "Sprachassistenten" = v_2709,
+    "Entertainment" = v_2710, "Küchengeräte" = v_2711, "Steckdose" = v_2712, "Smart Hub" = v_2713,
+    "Thermostat/Heizung" = v_2714, "Photovoltaik" = v_2715, "Haushaltsroboter" = v_2716, "Energiemanagement" = v_2717, "Waschmaschine" = v_2718
+  )
+
+data_impact_comfort |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Komfortgewinn durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.4 Auswirkungen: Assistenz und Unterstützung
+```{r impact-assistance}
+data_impact_assistance <- data |>
+  select(
+    "Stromspeicher" = v_2756, "Jalousien/Rollo" = v_2757, "Sicherheit" = v_2758, "Gesundheit/Assistenz" = v_2759,
+    "E-Auto" = v_2760, "Beleuchtung" = v_2761, "Smart Home System" = v_2762, "Sprachassistenten" = v_2763,
+    "Entertainment" = v_2764, "Küchengeräte" = v_2765, "Steckdose" = v_2766, "Smart Hub" = v_2767,
+    "Thermostat/Heizung" = v_2768, "Photovoltaik" = v_2769, "Haushaltsroboter" = v_2770, "Energiemanagement" = v_2771, "Waschmaschine" = v_2772
+  )
+
+data_impact_assistance |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Assistenz und Unterstützung durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.5 Auswirkungen: Energieeinsparungen
+```{r impact-energy}
+data_impact_energy <- data |>
+  select(
+    "Stromspeicher" = v_2720, "Jalousien/Rollo" = v_2721, "Sicherheit" = v_2722, "Gesundheit/Assistenz" = v_2723,
+    "E-Auto" = v_2724, "Beleuchtung" = v_2725, "Smart Home System" = v_2726, "Sprachassistenten" = v_2727,
+    "Entertainment" = v_2728, "Küchengeräte" = v_2729, "Steckdose" = v_2730, "Smart Hub" = v_2731,
+    "Thermostat/Heizung" = v_2732, "Photovoltaik" = v_2733, "Haushaltsroboter" = v_2734, "Energiemanagement" = v_2735, "Waschmaschine" = v_2736
+  )
+
+data_impact_energy |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Energieeinsparungen durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.6 Auswirkungen: Sicherheit
+```{r impact-security}
+data_impact_security <- data |>
+  select(
+    "Stromspeicher" = v_2738, "Jalousien/Rollo" = v_2739, "Sicherheit" = v_2740, "Gesundheit/Assistenz" = v_2741,
+    "E-Auto" = v_2742, "Beleuchtung" = v_2743, "Smart Home System" = v_2744, "Sprachassistenten" = v_2745,
+    "Entertainment" = v_2746, "Küchengeräte" = v_2747, "Steckdose" = v_2748, "Smart Hub" = v_2749,
+    "Thermostat/Heizung" = v_2750, "Photovoltaik" = v_2751, "Haushaltsroboter" = v_2752, "Energiemanagement" = v_2753, "Waschmaschine" = v_2754
+  )
+
+data_impact_security |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Sicherheit durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.7 Auswirkungen: Spaß und Unterhaltung
+```{r impact-entertainment}
+data_impact_entertainment <- data |>
+  select(
+    "Stromspeicher" = v_2774, "Jalousien/Rollo" = v_2775, "Sicherheit" = v_2776, "Gesundheit/Assistenz" = v_2777,
+    "E-Auto" = v_2778, "Beleuchtung" = v_2779, "Smart Home System" = v_2780, "Sprachassistenten" = v_2781,
+    "Entertainment" = v_2782, "Küchengeräte" = v_2783, "Steckdose" = v_2785, "Smart Hub" = v_2787,
+    "Thermostat/Heizung" = v_2789, "Photovoltaik" = v_2791, "Haushaltsroboter" = v_2793, "Energiemanagement" = v_2795, "Waschmaschine" = v_2797
+  )
+
+data_impact_entertainment |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Spaß und Unterhaltung durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.8 Auswirkungen: Kosteneinsparungen
+```{r impact-savings}
+data_impact_savings <- data |>
+  select(
+     "Stromspeicher" = v_2784, "Jalousien/Rollo" = v_2786, "Sicherheit" = v_2788, "Gesundheit/Assistenz" = v_2790,
+    "E-Auto" = v_2792, "Beleuchtung" = v_2794, "Smart Home System" = v_2796, "Sprachassistenten" = v_2798,
+    "Entertainment" = v_2800, "Küchengeräte" = v_2801, "Steckdose" = v_2802, "Smart Hub" = v_2803,
+    "Thermostat/Heizung" = v_2804, "Photovoltaik" = v_2805, "Haushaltsroboter" = v_2806, "Energiemanagement" = v_2807, "Waschmaschine" = v_2808
+  )
+
+data_impact_savings |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Technologie", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Technologie, fill = factor(Antwort, levels = c(names(labels_impact), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_impact, "NA" = "Keine Angabe")) +
+  labs(title = "Kosteneinsparungen durch SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.9 Meinungen zu SHT
+
+#### 3.9.1 Technikaffinität
+
+```{r opinions-tech}
+labels_opinions <- c("1" = "stimme eher zu", "2" = "2", "3" = "3", "4" = "4", "5" = "5", "6" = "6", "7" = "stimme eher nicht zu")
+
+data_opinion_tech <- data |>
+  select(
+    "Neugierde" = v_1625, "Gefallen an Neuentwicklungen" = v_1626, "Interesse neueste Geräte" = v_1627, "Gelegenheit Nutzung neuester Geräte" = v_1628, "Angst Scheitern neue Technik" = v_1629, "Überforderung durch neue Technik" = v_1630, "Angst kaputt zu machen" = v_1631, "Umgang mit neuer Technik schwierig" = v_1632, "Erfolg hängt von mir ab" = v_1633, "Gelingen liegt in meiner Hand" = v_1634, "Lösung hängt von mir ab" = v_1635)
+
+data_opinion_tech |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Aussage", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Aussage, fill = factor(Antwort, levels = c(names(labels_opinions), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(7, "RdYlBu"), "grey80"), labels = c(labels_opinions, "NA" = "Keine Angabe")) +
+  labs(title = "Meinungen zur Technikaffinität", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+#### 3.9.2 Energieeinsparungen
+
+```{r opinions-savings}
+data_opinion_energy_saving <- data |>
+  select(
+    "Annerkennung Energieeinsparung" = v_1658, "Wichtigkeiteit Isolierung" = v_1659, "Kippen billiger als Lüften" = v_1660, "Nicht zumutbar Verbrauch zu kontrollieren" = v_1661, "Stromsparen durch efffiziente Geräte" = v_1662, "Energiesparen Kochen" = v_1663, "Heizen statt warmer Kleidung" = v_1664, "Energiesparen manuelle Arbeit in der Küche" = v_1665)
+
+data_opinion_energy_saving |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Aussage", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Aussage, fill = factor(Antwort, levels = c(names(labels_opinions), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(7, "RdYlBu"), "grey80"), labels = c(labels_opinions, "NA" = "Keine Angabe")) +
+  labs(title = "Meinungen zu Energieeinsparungen", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.11 Steuerung von SHT
+```{r management-sht}
+labels_management <- c("1" = "stimme voll und ganz zu", "2" = "2", "3" = "3", "4" = "4", "5" = "stimme überhaupt nicht zu")
+
+data_management_sht <- data |>
+  select(
+    "Smartphone" = v_1588, "Laptop/PC" = v_1589, "Tablet" = v_1590, "Smart TV" = v_1591,
+    "Separate Anzeige" = v_1592, "Wearables" = v_1593, "Sprachassistent" = v_1594,
+    "Gestensteuerung" = v_1595, "Keine davon" = v_2934
+  )
+
+data_management_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Steuerungsart", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Steuerungsart, fill = factor(Antwort, levels = c(names(labels_management), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_management, "NA" = "Keine Angabe")) +
+  labs(title = "Bevorzugte Steuerung von SHT", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.12 Finanzierung
+```{r funding}
+labels_funding <- c("1" = "spricht mich sehr an", "2" = "2", "3" = "3", "4" = "4", "5" = "spricht mich gar nicht an")
+
+data_funding_sht <- data |>
+  select(
+    "Einmalzahlung" = v_1599, "Abo (Pauschale)" = v_1600, "Abo (nach Verbrauch)" = v_1601
+  )
+
+data_financing_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Finanzierungsart", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Finanzierungsart, fill = factor(Antwort, levels = c(names(labels_funding), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_funding, "NA" = "Keine Angabe")) +
+  labs(title = "Bevorzugte Finanzierung", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+```{r}
+data_funding_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Finanzierungsart", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Finanzierungsart, fill = factor(Antwort, levels = c(names(labels_funding), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(
+    name = "Zustimmung", 
+    values = c(brewer.pal(5, "RdYlBu"), "grey80"), 
+    labels = c(labels_funding, "NA" = "Keine Angabe")
+  ) +
+  labs(title = "Bevorzugte Finanzierung", x = "Anteil", y = NULL) +
+  theme_minimal() + 
+  theme(legend.position = "bottom")
+```
+### 3.13 Art der Information
+```{r information-type}
+labels_info <- c("1" = "sehr wichtig", "2" = "2", "3" = "3", "4" = "4", "5" = "sehr unwichtig")
+
+data_information_gain_sht <- data |>
+  select(
+    "Reine Information" = v_1577, "Verbesserungsvorschläge" = v_1578, "Erinnerungen/Alerts" = v_1579
+  )
+
+data_information_gain_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Informationsart", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Informationsart, fill = factor(Antwort, levels = c(names(labels_info), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Wichtigkeit", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_info, "NA" = "Keine Angabe")) +
+  labs(title = "Bevorzugte Art der Information", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.14 Designlösung
+```{r design}
+labels_design <- c("1" = "stimme voll und ganz zu", "2" = "2", "3" = "3", "4" = "4", "5" = "stimme überhaupt nicht zu")
+
+data_design_solution_sht <- data |>
+  select("Modular (erweiterbar)" = v_2922, "Integriert (zentral)" = v_2923, "Gut erkennbar" = v_2924, "Im Hintergrund" = v_2925, "Immer aktiv" = v_2926, "Nur wenn aktiviert" = v_2927,
+    "Lokal (ohne Internet)" = v_2928, "Mit Internet verbunden" = v_2929)
+
+data_design_solution_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Design", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Design, fill = factor(Antwort, levels = c(names(labels_design), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Zustimmung", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_design, "NA" = "Keine Angabe")) +
+  labs(title = "Bevorzugte Designlösung", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.15 Art der Steuerung (Automatisierung)
+```{r control-type}
+data_type_control_sht <- data |>
+  select(
+    "Erweiterte manuelle Steuerung" = v_1596, "Automatisierung" = v_1597, "KI" = v_1598)
+
+data_type_control_sht |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Steuerungsart", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Steuerungsart, fill = factor(Antwort, levels = c(names(labels_info), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Wichtigkeit", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_info, "NA" = "Keine Angabe")) +
+  labs(title = "Bevorzugte Art der Steuerung", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.16 Nachhaltigkeit & Energie
+```{r sustainability}
+labels_sus <- c("1" = "1", "2" = "2", "3" = "3", "4" = "4", "5" = "5")
+
+data_sustainability <- data |>
+  select(
+    "Individuell vs. Gesellschaftlich" = v_2884,
+    "Verhaltensänderung vs. Technologie" = v_2885,
+    "Eigenes Wissen vs. Vorgaben" = v_2886,
+    "Verzicht vs. Kein Verzicht" = v_2887
+  )
+
+data_sustainability |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Dimension", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Dimension, fill = factor(Antwort, levels = c(names(labels_sus), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(name = "Tendenz (1 = Links, 5 = Rechts)", values = c(brewer.pal(5, "RdYlBu"), "grey80"), labels = c(labels_sus, "NA" = "Keine Angabe")) +
+  labs(title = "Nachhaltigkeit: Wo liegt die Lösung?", x = "Anteil", y = NULL) +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+### 3.17 Umwelt- und Klimabewusstsein
+```{r eco-awareness}
+labels_eco <- c("1" = "stimme voll und ganz zu", "2" = "2", "3" = "3", "4" = "4", "5" = "stimme überhaupt nicht zu")
+
+data_eco_awareness <- data |>
+  select(
+    "Klimaschonende Produkte" = v_1642, "Klima bei Entscheidungen" = v_1643, "Sorge um Ressourcen" = v_1644,
+    "Verantwortungsbewusst" = v_1645, "Kaufgewohnheiten beeinflusst" = v_1646, "Unannehmlichkeiten in Kauf nehmen" = v_1647,
+    "Wichtige Menschen (sollte nutzen)" = v_2931, "Nahestehende (sollte nutzen)" = v_2932, "Geschätzte Meinung (bevorzugen Nutzung)" = v_2933
+  )
+
+data_eco_awareness |>
+  mutate(across(everything(), as.character)) |> 
+  pivot_longer(cols = everything(), names_to = "Aussage", values_to = "Antwort") |>
+  mutate(Antwort = replace_na(Antwort, "NA")) |>
+  ggplot(aes(y = Aussage, fill = factor(Antwort, levels = c(names(labels_eco), "NA")))) +
+  geom_bar(position = "fill") + 
+  scale_x_continuous(labels = scales::percent_format()) +
+  scale_fill_manual(
+    name = "Zustimmung", 
+    values = c(brewer.pal(5, "RdYlBu"), "grey80"), 
+    labels = c(labels_eco, "NA" = "Keine Angabe") 
+  ) +
+  labs(title = "Umwelt- und Klimabewusstsein", x = "Anteil", y = NULL) +
+  theme_minimal() + 
+  theme(legend.position = "bottom")
+```
+
+## Korrelationen zwischen den Hauptfragen
+
+```{r main_questions_index_median}
+
+# 1. Daten von factor zu numeric umwandeln
+
+num_importance_benefits <- data_importance_benefits |>
+  mutate(across(everything(), as.numeric))
+
+num_availability_interest <- data_availability_interest |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_comfort <- data_impact_comfort |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_assistance <- data_impact_assistance |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_energy <- data_impact_energy |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_security <- data_impact_security |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_entertainment <- data_impact_entertainment |>
+  mutate(across(everything(), as.numeric))
+
+num_impact_savings <- data_impact_savings |>
+  mutate(across(everything(), as.numeric))
+
+num_opinion_tech <- data_opinion_tech |>
+  mutate(across(everything(), as.numeric))
+
+num_opinion_energy_saving <- data_opinion_energy_saving |>
+  mutate(across(everything(), as.numeric))
+
+num_data_management_sht <- data_management_sht |>
+  mutate(across(everything(), as.numeric))
+
+num_funding <- data_funding_sht |>
+  mutate(across(everything(), as.numeric))
+
+num_information_gain <- data_information_gain_sht |>
+  mutate(across(everything(), as.numeric))
+
+num_design_solution <- data_design_solution_sht |>
+  mutate(across(everything(), as.numeric))
+
+num_type_control <- data_type_control_sht |>
+  mutate(across(everything(), as.numeric))
+
+num_sustainability <- data_sustainability |>
+  mutate(across(everything(), as.numeric))
+
+num_eco_awareness <- data_eco_awareness |>
+  mutate(across(everything(), as.numeric))
+
+indices <- tibble(
+  importance_benefits = rowMeans(num_importance_benefits, na.rm = TRUE),
+  availability_interest = rowMeans(num_availability_interest, na.rm = TRUE),
+  impact_comfort = rowMeans(num_impact_comfort, na.rm = TRUE),
+  impact_assistance = rowMeans(num_impact_assistance, na.rm = TRUE),
+  impact_energy = rowMeans(num_impact_energy, na.rm = TRUE),
+  impact_security = rowMeans(num_impact_security, na.rm = TRUE),
+  impact_entertainment = rowMeans(num_impact_entertainment, na.rm = TRUE),
+  impact_savings = rowMeans(num_impact_savings, na.rm = TRUE),
+  opinion_tech = rowMeans(num_opinion_tech, na.rm = TRUE),
+  opinion_energy_saving = rowMeans(num_opinion_energy_saving, na.rm = TRUE),
+  management_sht = rowMeans(num_data_management_sht, na.rm = TRUE),
+  funding = rowMeans(num_funding, na.rm = TRUE),
+  information_gain = rowMeans(num_information_gain, na.rm = TRUE),
+  design_solution = rowMeans(num_design_solution, na.rm = TRUE),
+  type_control = rowMeans(num_type_control, na.rm = TRUE),
+  sustainability = rowMeans(num_sustainability, na.rm = TRUE),
+  eco_awareness = rowMeans(num_eco_awareness, na.rm = TRUE)
+)
+```
+
+```{r corrplot_main_questions}
+ggcorrplot(
+  cor(indices, use = "pairwise.complete.obs"), 
+  method = "circle", 
+  type = "lower", 
+  tl.col = "black", 
+  tl.srt = 45, 
+  lab = TRUE,       # Changed from labels = TRUE to lab = TRUE
+  lab_size = 3, 
+  title = "Korrelationen zwischen den Hauptfragen", 
+  ggtheme = theme_minimal()
+)
+
+```
