@@ -102,13 +102,13 @@ Der folgende Fragenblock wurde für die Auswertung in zwei inhaltliche Bereiche 
 
 #### Technikaffinität
 
-[Technikaffinität](output/plots/meinung-technikaffinitaet.png)
+![Technikaffinität](output/plots/meinung-technikaffinitaet.png)
 
 Der Großteil der Befragten würde sich tendenziell als technikaffin beschreiben und zeigt erfreulicherweise wenig Berührungsängste oder Sorgen gegenüber neuen Technologien.
 
 #### Energiesparmaßnahmen
 
-[Energiesparmaßnahmen](output/plots/meinung-energiesparen.png)
+![Energiesparmaßnahmen](output/plots/meinung-energiesparen.png)
 
 Die Teilnehmer stimmen überwiegend zu, dass auch herkömmliche, rein analoge Maßnahmen (wie z. B. Stoßlüften) absolut wirksam sind, um Energie zu verringern.
 
