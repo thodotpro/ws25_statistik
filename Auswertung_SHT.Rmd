@@ -676,10 +676,10 @@ summary(marketing_model)
 
 ### 4.3 Visualisierung der Modelleffekte (Marketing-Hebel)
 
-Um die Ergebnisse für das Marketing direkt greifbar zu machen, visualisieren wir die Stärke der einzelnen Haupteinflussfaktoren in einem einfachen "Forest Plot". Wir blenden nicht-signifikante demografische Variablen aus und fokussieren uns auf die Kerntreiber.
+Um die Ergebnisse für das Marketing direkt greifbar zu machen, visualisieren wir die Stärke der einzelnen Haupteinflussfaktoren. Wir blenden nicht-signifikante demografische Variablen aus und fokussieren uns auf die Kerntreiber.
 
 **Wichtige Lesehilfe für den Plot:** 
-Da auf den Eingabe-Skalen der Umfrage eine "1" meist für "Stimme voll zu" oder "Sehr wichtig" stand, bedeutet ein **negativer Wert im Plot** (links der roten Linie) in Wahrheit: *Je intensiver die Person zustimmt (Wert geht gegen 1), desto HÖHER ist die Kaufwahrscheinlichkeit!*
+Da auf den Eingabe-Skalen der Umfrage eine "1" meist für "Stimme voll zu" oder "Sehr wichtig" stand, bedeutet ein **negativer Wert im Plot** (links der roten Linie): *Je intensiver die Person zustimmt (Wert geht gegen 1), desto HÖHER ist die Kaufwahrscheinlichkeit.*
 
 ```{r marketing-plot, fig.width=8, fig.height=5, warning=FALSE, message=FALSE}
 
@@ -687,15 +687,13 @@ Da auf den Eingabe-Skalen der Umfrage eine "1" meist für "Stimme voll zu" oder 
 model_results <- as.data.frame(summary(marketing_model)$coefficients)
 model_results$Faktor <- rownames(model_results)
 
-# 2. Daten für den Plot aufbereiten (nur die wichtigsten Treiber)
+# 2. Daten für den Plot aufbereiten
 plot_data <- model_results |>
   filter(Faktor %in% c("Alter", "opinion_tech", "eco_awareness", 
                        "impact_savings", "importance_benefits")) |>
   mutate(
-    # Konfidenzintervall berechnen (Estimate +/- 1.96 * Standardfehler)
     Untergrenze = Estimate - 1.96 * `Std. Error`,
     Obergrenze = Estimate + 1.96 * `Std. Error`,
-    # Verständliche Namen vergeben
     Faktor_Name = case_when(
       Faktor == "opinion_tech" ~ "Technikaffinität",
       Faktor == "importance_benefits" ~ "Wichtigkeit SHT-Vorteile",
@@ -706,8 +704,7 @@ plot_data <- model_results |>
     )
   )
 
-// ...existing code...
-# 3. Sehr einfacher Plot
+# 3. Plot der Faktoren
 ggplot(plot_data, aes(x = Estimate, y = reorder(Faktor_Name, Estimate))) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "darkred", linewidth = 1) + 
   geom_errorbar(aes(xmin = Untergrenze, xmax = Obergrenze), width = 0.2, color = "steelblue", linewidth = 1) +
@@ -725,49 +722,31 @@ ggplot(plot_data, aes(x = Estimate, y = reorder(Faktor_Name, Estimate))) +
 
 **Nächste Schritte zur Interpretation:**
 - **Estimate (Schätzer)**: Ist der Wert bei einer Variable positiv und der p-Wert (`Pr(>|z|)`) unter 0.05 (markiert mit Sternchen `*`), steigert dieses Merkmal die Kaufwahrscheinlichkeit signifikant.
-- **Marketing-Aktion**: Wenn z. B. `opinion_tech` signifikant und extrem positiv ist, sollten Ads den Fokus auf "Features und smarte Funktionen" legen, und die Zielgruppe der Technikaffinen adressieren.
+- **Marketing-Aktion**: Wenn z. B. `opinion_tech` signifikant und negativ ist (hohe Technikaffinität = hohes Kaufinteresse), sollten Ads den Fokus auf "Features und smarte Funktionen" legen.
 
-### 4.4 Produktpräferenzen der "heißen" Zielgruppe
+### 4.4 Produktpräferenzen der kaufbereiten Zielgruppe
 
-Wir betrachten nun ausschließlich Personen mit einem hohen Kaufinteresse an Smart Home (`target_smarthome == 1`), um zu sehen, welche Produkte sie am stärksten priorisieren. Dafür filtern wir unsere erfassten Antworten der Frage `data_availability_interest`.
+Wir betrachten nun ausschließlich Personen mit einem hohen Kaufinteresse an Smart Home (`target_smarthome == 1`), um zu identifizieren, welche Produkte sie priorisieren. Dafür werden die Antworten der Frage `data_availability_interest` gefiltert.
 
 ```{r target-products, fig.width=9, fig.height=6}
 # 1. Daten kombinieren und filtern
 target_buyers <- marketing_data |>
-  # Wir binden die originalen Spalten der Produktfrage wieder an
   bind_cols(data_availability_interest) |>
-  # Nur die potenziellen Käufer behalten
   filter(target_smarthome == 1)
 
-// ...existing code...
-# 2. Anteil der Antworten "bereits vorhanden" oder "sehr großes/großes Interesse" berechnen
+# 2. Anteil der Antworten "bereits vorhanden" oder "großes Interesse" berechnen
 top_products <- target_buyers |>
-  select(starts_with("v_171")) |>
-  # Wir fokussieren uns wieder auf die Werte 1, 2 und 3
+  # Wir wählen nun nicht mehr spalten aus die mit v_171 starten sonder die neu benannten von data_availability_interest
+  # da die Spalten hier echte Produktnamen als Namen haben.
+  select(any_of(colnames(data_availability_interest))) |>
   mutate(across(everything(), ~ ifelse(as.numeric(as.character(.x)) %in% c(1, 2, 3), 1, 0))) |>
   summarise(across(everything(), ~ mean(.x, na.rm = TRUE))) |>
-  pivot_longer(everything(), names_to = "Variable", values_to = "Anteil") |>
-  # Wir könnten hier z.B. labels_availability mappen, wir machen es mal simpel mit Original-Namen:
-// ...existing code...
-  mutate(
-    Produkt = case_when(
-      Variable == "v_1715" ~ "Smart Home (Allgemein)",
-      Variable == "v_1716" ~ "Smart Heating",
-      Variable == "v_1717" ~ "Smarte Beleuchtung",
-      Variable == "v_1718" ~ "Smarte Sicherheit",
-      Variable == "v_1719" ~ "Smarte Haushaltsgeräte",
-      Variable == "v_17110" ~ "Smartes Energiemanagement",
-      Variable == "v_17111" ~ "Photovoltaik/Solar",
-      Variable == "v_17112" ~ "Intelligente Wallbox",
-      TRUE ~ Variable
-    )
-  ) |>
-  # Smart Home Allgemein entfernen, das war ja unser Filter-Kriterium
-  filter(Variable != "v_1715")
+  pivot_longer(everything(), names_to = "Produkt", values_to = "Anteil") |>
+  filter(Produkt != "Smart Home") # Smart Home Allgemein entfernen, das war ja unser Filter-Kriterium
 
 # 3. Plot der Top-Produkte
 ggplot(top_products, aes(x = Anteil, y = reorder(Produkt, Anteil))) +
-  geom_col(fill = brewer.pal(8, "RdYlBu")[8]) + # Passende Farbe aus dem bisherigen Schema
+  geom_col(fill = brewer.pal(8, "RdYlBu")[8]) +
   scale_x_continuous(labels = scales::percent_format()) +
   labs(
     title = "Top-Produkte der kaufbereiten Zielgruppe",
@@ -780,23 +759,22 @@ ggplot(top_products, aes(x = Anteil, y = reorder(Produkt, Anteil))) +
 
 ### 4.5 Bevorzugtes Finanzierungsmodell
 
-Für die strategische Preisgestaltung betrachten wir, wie diese Zielgruppe am liebsten abrechnen möchte.
+Für die strategische Preisgestaltung betrachten wir, welche Finanzierungsmodelle von dieser Zielgruppe bevorzugt werden.
 
 ```{r target-funding, fig.width=8, fig.height=4}
-# 1. Wir holen die Finanzierungsdaten für die heiße Zielgruppe
+# 1. Finanzierungsdaten für die kaufbereite Zielgruppe extrahieren
 funding_preferences <- marketing_data |>
   bind_cols(data_funding_sht) |>
   filter(target_smarthome == 1) |>
   select(any_of(c("Einmalzahlung", "Abo (Pauschale)", "Abo (nach Verbrauch)"))) |>
   pivot_longer(everything(), names_to = "Modell", values_to = "Zustimmung") |>
-  # NAs entfernen und zusammenfassen
   filter(!is.na(Zustimmung)) |>
   count(Modell, Zustimmung) |>
   group_by(Modell) |>
   mutate(Anteil = n / sum(n)) |>
   ungroup()
 
-# 2. Simpler Balkenplot
+# 2. Balkenplot
 ggplot(funding_preferences, aes(x = Anteil, y = Modell, fill = as.factor(Zustimmung))) +
   geom_col(position = "fill") +
   scale_x_continuous(labels = scales::percent_format()) +
@@ -816,7 +794,7 @@ ggplot(funding_preferences, aes(x = Anteil, y = Modell, fill = as.factor(Zustimm
 
 ### 4.6 Die Hürden der "Nein-Sager" verstehen
 
-Wieso interessieren sich zwei Drittel der Befragten nicht für Smart Home Produkte (`target_smarthome == 0`)? Wir untersuchen dazu einige ihrer technischen Meinungen und Ängste, um im Marketing mögliche Hürden abzubauen.
+Wieso interessieren sich zwei Drittel der Befragten nicht für Smart Home Produkte (`target_smarthome == 0`)? Wir untersuchen dazu technische Meinungen und Ängste, um im Marketing mögliche Hürden abzubauen.
 
 ```{r non-buyers, fig.width=9, fig.height=5}
 # Daten der Nicht-Interessierten mit Technologie-Meinungen verbinden
@@ -862,19 +840,19 @@ ggplot(fears_data, aes(x = Anteil, y = Technik_Sorge, fill = as.factor(Zustimmun
 
 ### 4.7 Fazit & Buyer Personas
 
-Basierend auf den Analysen (Logistische Regression, MAD und Segmentanalyse) lassen sich folgende strategische Insights für "shtR's" ableiten:
+Basierend auf den Analysen (Logistische Regression, MAD und Segmentanalyse) lassen sich folgende strategische Insights für die Firma XYZ IOT ableiten:
 
 **Persona A: Der "Smart Tech Enthusiast"**
 - **Demografie**: Eher jünger, Einkommen spielt eine untergeordnete Rolle.
-- **Treiber**: Sehr hohe Technikaffinität (`opinion_tech`); will Systeme ausprobieren; sucht Komfort und Assistenz im Alltag.
-- **Hürden**: Geldersparnis ist sekundär. Werbung mit ROI und Cent-Beträgen zündet bei ihm nicht.
-- **Marketing-Ansatz**: Highlight-Fokus auf Features, Ecosystem-Integration und "Coolness-Faktor".
+- **Treiber**: Sehr hohe Technikaffinität (`opinion_tech`); interessiert an neuen Systemen; sucht Komfort und Assistenz im Alltag.
+- **Hürden**: Geldersparnis ist sekundär. Werbung auf Basis von Kostenersparnissen (z. B. durch Heizenergie) erzeugt bei dieser Gruppe oft keine Wirkung.
+- **Marketing-Ansatz**: Fokus auf Features, Ecosystem-Integration und Innovation.
 
 **Persona B: Der "Eco-Manager"**
 - **Demografie**: Heterogen im Alter, aber stark klimabewusst (`eco_awareness`).
 - **Treiber**: Sucht explizit nach Tools (wie PV-Anlagen oder Smart-Heating), um den eigenen CO2-Fußabdruck zu senken und Kontrolle über den Verbrauch zu haben.
-- **Hürden**: Skepsis gegenüber "Spielereien" (wie smarter Beleuchtung); Datenschutz könnte wichtiger sein.
-- **Marketing-Ansatz**: Fokus auf Transparenz des Energieverbrauchs, Nachhaltigkeit und das gute Gefühl, aktiv etwas fürs Klima zu tun.
+- **Hürden**: Skepsis gegenüber Komfort-orientierten Automatisierungen (wie smarter Beleuchtung); Datenschutz hat oft Priorität.
+- **Marketing-Ansatz**: Fokus auf Transparenz des Energieverbrauchs und Nachhaltigkeit.
 
 **Pricing-Strategie:** 
-(Interpretation basierend auf Plot 4.5) Im Allgemeinen wird die Einmalzahlung dem Abo-Modell weiterhin vorgezogen. Abomodelle (Software as a Service / Hardware as a Service) stoßen auf stärkere Skepsis, selbst bei der hoch interessierten Zielgruppe. Um Abos attraktiv zu machen, müssen sie zwingend einen messbaren Zusatznutzen bieten (z.B. Garantieverlängerungen oder Premium-Analysen bei Energiemanagement-Dashboards).
+(Interpretation basierend auf Plot 4.5) Im Allgemeinen wird die Einmalzahlung dem Abo-Modell weiterhin vorgezogen. Abomodelle (Software as a Service / Hardware as a Service) stoßen auf stärkere Skepsis, selbst bei der hoch interessierten Zielgruppe. Um Abos attraktiv zu machen, müssen sie zwingend einen messbaren Zusatznutzen bieten (z. B. Garantieverlängerungen oder Premium-Analysen bei Energiemanagement-Dashboards).

@@ -163,3 +163,7 @@ Eine Steuerung über das eigene Smartphone ist bei den Teilnehmern die mit Absta
 Um Zusammenhänge auf Makro-Ebene zu finden, wurde für jede Hauptfrage der Median der jeweiligen Teil-Antworten gebildet und korreliert. Starke und logische Korrelationen (z. B. zwischen hoher Technikaffinität und starken Kaufinteresse) bildeten in weiterer Folge die Basis, um bei gezielteren Fragestellungen in die explorative Modellierung zu gehen.
 
 ![Korrelation Themen](output/plots/korr-hauptfragen_sht.png)
+
+## MAD - Median Absolute Deviation
+
+![MAD](output/plots/mad.png)
