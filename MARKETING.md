@@ -8,12 +8,13 @@ Dieser Bericht übersetzt die deskriptiven Erkenntnisse der Smart Home (SHT) Umf
 
 Um Werbung effektiv zu platzieren, müssen wir wissen, welche Faktoren die Wahrscheinlichkeit eines Kaufs signifikant steigern. Das logistische Regressionsmodell zeigt ein klares Bild:
 
-*(Platzhalter für Plot: "Was beeinflusst das Kaufinteresse für Smart Homes?")*
-`![Treiber](output/plots/marketing_treiber.png)`
+![Treiber](output/plots/marketing/treiber_sht.png)
 
 **Kernaussagen:**
 *   **Der stärkste Hebel:** Eine hohe *Technikaffinität* und das generelle Verlangen nach den *Vorteilen eines Smart Homes* treiben das Kaufinteresse massiv.
+
 *   **Die Illusion der Ersparnis:** Personen, die SHT kaufen wollen, tun dies *nicht* aus der primären Motivation, Geld zu sparen. Werbung, die reine Kosteneinsparung verspricht, verfehlt die Kern-Zielgruppe.
+
 *   **Demographie:** Das Einkommen und Geschlecht spielen keine signifikante Rolle für das prinzipielle Kaufinteresse. Jedoch ist eine leichte Tendenz zu *jüngeren Kunden* erkennbar.
 
 ---
@@ -22,8 +23,7 @@ Um Werbung effektiv zu platzieren, müssen wir wissen, welche Faktoren die Wahrs
 
 Bei Fokussierung auf das isolierte Segment der "kaufbereiten" Kunden zeigt sich, welche Produktkategorien derzeit die höchste Relevanz haben:
 
-*(Platzhalter für Plot: "Top-Produkte der kaufbereiten Zielgruppe")*
-`![Produkte](output/plots/marketing_produkte.png)`
+![Produkte](output/plots/marketing/top-produkte.png)
 
 ---
 
@@ -31,11 +31,12 @@ Bei Fokussierung auf das isolierte Segment der "kaufbereiten" Kunden zeigt sich,
 
 Die Auswertung der bevorzugten Finanzierungsmodelle innerhalb der interessierten Zielgruppe gibt wichtige Hinweise für das Pricing:
 
-*(Platzhalter für Plot: "Beliebteste Finanzierungsmodelle")*
-`![Finanzierung](output/plots/marketing_finanzierung.png)`
+![Finanzierung](output/plots/marketing/finanzierungsmodell.png)
 
 **Kernaussagen:**
+
 *   Die klassische **Einmalzahlung** wird weiterhin deutlich bevorzugt.
+
 *   Abomodelle (verbrauchs- oder pauschalabhängig) stoßen selbst bei der "heißen" Zielgruppe auf große Skepsis und Ablehnung. Für erfolgreiche "As as Service"-Modelle im SHT-Bereich muss eine extrem hohe, spürbare Wertschöpfung für den Kunden geschaffen werden.
 
 ---
@@ -44,11 +45,11 @@ Die Auswertung der bevorzugten Finanzierungsmodelle innerhalb der interessierten
 
 Um den adressierbaren Markt zu vergrößern, lohnt ein Blick auf jene 68% der Befragten, die derzeit kein Interesse an SHT haben. Welche Hürden müssen abgebaut werden?
 
-*(Platzhalter für Plot: "Was hält die Nicht-Käufer ab?")*
-`![Hürden](output/plots/marketing_huerden.png)`
+![Hürden](output/plots/marketing/non_buyers.png)
 
 **Kernaussagen:**
 *   Die größten Blockaden liegen in der Angst vor **Datenverlust**, **Ausfall der Technik** und der Sorge, das System nicht kontrollieren zu können.
+
 *   Marketing-Kampagnen zur Markterweiterung müssen sich primär auf Datenschutz ("Privacy by Design"), einfache Installation und hohe Ausfallsicherheit konzentrieren.
 
 ---
@@ -67,5 +68,3 @@ Basierend auf den Modellen lassen sich zwei konkrete Zielgruppen-Profile für zu
 *   **Treiber:** Sucht explizit nach smarten Tools (wie PV-Anlagen oder Smart-Heating), um den eigenen CO2-Fußabdruck zu senken und die Kontrolle über den Verbrauch zu haben.
 *   **Marketing-Ansatz:** Fokus auf Transparenz des Energieverbrauchs, nachhaltige Hardware und das gute Gefühl, aktiv etwas für den Klimaschutz zu tun. Komplizierte Schnittstellen müssen vermieden werden.
 
----
-*Zurück zur Basis-Auswertung? ➡️ [DESKRIPTIV.md](DESKRIPTIV.md)*
